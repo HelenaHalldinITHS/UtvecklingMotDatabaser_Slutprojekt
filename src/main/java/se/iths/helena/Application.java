@@ -16,6 +16,7 @@ public class Application {
         Student student2 = new Student("Sara","Olsson", education1);
         Course course1 = new Course("Java",education1);
         Course course2 = new Course("Sql",education1);
+        Teacher teacher1 = new Teacher("Eddie","Neumann");
 
         em.getTransaction().begin();
         em.persist(education1);
@@ -24,6 +25,7 @@ public class Application {
         em.persist(student2);
         em.persist(course1);
         em.persist(course2);
+        em.persist(teacher1);
         em.getTransaction().commit();
         em.close();
 

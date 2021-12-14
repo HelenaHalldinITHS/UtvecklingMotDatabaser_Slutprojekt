@@ -6,6 +6,7 @@
         <class>se.iths.helena.Education</class>
         <class>se.iths.helena.Student</class>
         <class>se.iths.helena.Course</class>
+        <class>se.iths.helena.Teacher</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/slutprojekt"/>
             <property name="jakarta.persistence.jdbc.user" value="helena"/>
