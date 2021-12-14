@@ -14,4 +14,20 @@ public class TeacherCourseRelation {
         id = new TeacherCourseRelationId(teacher, course);
     }
 
+    public Teacher getTeacher() {
+        return id.getTeacher();
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.id.setTeacher(teacher);
+    }
+
+    public Course getCourse() {
+        return id.getCourse();
+    }
+
+    public void setCourse(Course course) {
+        this.id.setCourse(course);
+    }
+
 }
