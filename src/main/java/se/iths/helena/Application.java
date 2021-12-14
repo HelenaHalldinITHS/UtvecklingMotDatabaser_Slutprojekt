@@ -17,6 +17,11 @@ public class Application {
         Course course1 = new Course("Java",education1);
         Course course2 = new Course("Sql",education1);
         Teacher teacher1 = new Teacher("Eddie","Neumann");
+        Teacher teacher2 = new Teacher("Martin","Test");
+        TeacherCourseRelation tcr1 = new TeacherCourseRelation(teacher1,course1);
+        TeacherCourseRelation tcr2 = new TeacherCourseRelation(teacher2,course1);
+        TeacherCourseRelation tcr3 = new TeacherCourseRelation(teacher1,course2);
+        TeacherCourseRelation tcr4 = new TeacherCourseRelation(teacher2,course2);
 
         em.getTransaction().begin();
         em.persist(education1);
@@ -26,6 +31,11 @@ public class Application {
         em.persist(course1);
         em.persist(course2);
         em.persist(teacher1);
+        em.persist(teacher2);
+        em.persist(tcr1);
+        em.persist(tcr2);
+        em.persist(tcr3);
+        em.persist(tcr4);
         em.getTransaction().commit();
         em.close();
 
