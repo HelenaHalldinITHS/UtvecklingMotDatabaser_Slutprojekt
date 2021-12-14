@@ -14,12 +14,16 @@ public class Application {
         Education education2 = new Education("UX-designer");
         Student student1 = new Student("Helena","Halldin",education1);
         Student student2 = new Student("Sara","Olsson", education1);
+        Course course1 = new Course("Java",education1);
+        Course course2 = new Course("Sql",education1);
 
         em.getTransaction().begin();
         em.persist(education1);
         em.persist(education2);
         em.persist(student1);
         em.persist(student2);
+        em.persist(course1);
+        em.persist(course2);
         em.getTransaction().commit();
         em.close();
 
