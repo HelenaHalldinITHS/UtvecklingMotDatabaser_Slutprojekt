@@ -14,6 +14,10 @@ public class Education {
 
     public Education(){}
 
+    public Education(String name) {
+        Name = name;
+    }
+
     public String getName() {
         return Name;
     }

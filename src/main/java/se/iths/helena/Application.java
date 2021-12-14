@@ -1,8 +1,27 @@
 package se.iths.helena;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+
 public class Application {
 
     public static void main(String[] args) {
-        System.out.println("Application");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
+        EntityManager em = emf.createEntityManager();
+
+        Education education1 = new Education("Javautvecklare");
+        Education education2 = new Education("UX-designer");
+        Student student1 = new Student("Helena","Halldin",education1);
+        Student student2 = new Student("Sara","Olsson", education1);
+
+        em.getTransaction().begin();
+        em.persist(education1);
+        em.persist(education2);
+        em.persist(student1);
+        em.persist(student2);
+        em.getTransaction().commit();
+        em.close();
+
     }
 }
