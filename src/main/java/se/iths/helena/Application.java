@@ -3,6 +3,7 @@ package se.iths.helena;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import se.iths.helena.entities.*;
 
 public class Application {
 

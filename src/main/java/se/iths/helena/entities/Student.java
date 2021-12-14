@@ -1,4 +1,4 @@
-package se.iths.helena;
+package se.iths.helena.entities;
 
 import jakarta.persistence.*;
 
