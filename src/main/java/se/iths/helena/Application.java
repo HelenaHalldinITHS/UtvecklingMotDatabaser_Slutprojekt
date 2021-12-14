@@ -13,16 +13,16 @@ public class Application {
 
         Education education1 = new Education("Javautvecklare");
         Education education2 = new Education("UX-designer");
-        Student student1 = new Student("Helena","Halldin",education1);
-        Student student2 = new Student("Sara","Olsson", education1);
-        Course course1 = new Course("Java",education1);
-        Course course2 = new Course("Sql",education1);
-        Teacher teacher1 = new Teacher("Eddie","Neumann");
-        Teacher teacher2 = new Teacher("Martin","Test");
-        TeacherCourseRelation tcr1 = new TeacherCourseRelation(teacher1,course1);
-        TeacherCourseRelation tcr2 = new TeacherCourseRelation(teacher2,course1);
-        TeacherCourseRelation tcr3 = new TeacherCourseRelation(teacher1,course2);
-        TeacherCourseRelation tcr4 = new TeacherCourseRelation(teacher2,course2);
+        Student student1 = new Student("Helena", "Halldin", education1);
+        Student student2 = new Student("Sara", "Olsson", education1);
+        Course course1 = new Course("Java", 60, education1);
+        Course course2 = new Course("Sql", 35, education1);
+        Teacher teacher1 = new Teacher("Eddie", "Neumann");
+        Teacher teacher2 = new Teacher("Martin", "Test");
+        TeacherCourseRelation tcr1 = new TeacherCourseRelation(teacher1, course1);
+        TeacherCourseRelation tcr2 = new TeacherCourseRelation(teacher2, course1);
+        TeacherCourseRelation tcr3 = new TeacherCourseRelation(teacher1, course2);
+        TeacherCourseRelation tcr4 = new TeacherCourseRelation(teacher2, course2);
 
         em.getTransaction().begin();
         em.persist(education1);

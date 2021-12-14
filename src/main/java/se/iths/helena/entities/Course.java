@@ -9,15 +9,18 @@ public class Course {
     private int id;
 
     private String name;
+    private int points;
 
     @ManyToOne
     private Education education;
 
-    public Course(){}
+    public Course() {
+    }
 
-    public Course(String name, Education education) {
+    public Course(String name, int points, Education education) {
         this.name = name;
         this.education = education;
+        this.points = points;
     }
 
     public String getName() {
@@ -34,5 +37,13 @@ public class Course {
 
     public void setEducation(Education education) {
         this.education = education;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }

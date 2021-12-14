@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 
 @Entity
 public class TeacherCourseRelation {
-   @EmbeddedId
+    @EmbeddedId
     TeacherCourseRelationId id;
 
-   public TeacherCourseRelation(){}
+    public TeacherCourseRelation() {
+    }
 
-    public TeacherCourseRelation(Teacher teacher, Course course){
-        id = new TeacherCourseRelationId(teacher,course);
+    public TeacherCourseRelation(Teacher teacher, Course course) {
+        id = new TeacherCourseRelationId(teacher, course);
     }
 
 }
