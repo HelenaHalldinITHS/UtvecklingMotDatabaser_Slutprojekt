@@ -11,10 +11,12 @@ public class Application {
 
     public static void main(String[] args) {
         EducationDao educationDao = new EducationDaoImpl();
-        Education education1 = new Education("Javautvecklare");
+        Education education1 = new Education("Java");
         Education education2 = new Education("UX-designer");
-        //educationDao.add(education1);
+        educationDao.add(education1);
         educationDao.add(education2);
+        education1.setName("Javautvecklare");
+        educationDao.update(education1);
 
 
         /* EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");

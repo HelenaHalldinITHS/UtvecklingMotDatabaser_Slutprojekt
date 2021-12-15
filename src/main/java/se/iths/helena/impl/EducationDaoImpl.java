@@ -24,7 +24,9 @@ public class EducationDaoImpl implements EducationDao {
 
     @Override
     public void update(Education education) {
-
+        em.getTransaction().begin();
+        em.merge(education);
+        em.getTransaction().commit();
     }
 
     @Override
