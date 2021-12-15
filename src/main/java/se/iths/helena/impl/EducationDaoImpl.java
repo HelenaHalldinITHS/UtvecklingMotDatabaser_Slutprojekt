@@ -50,7 +50,9 @@ public class EducationDaoImpl implements EducationDao {
 
     @Override
     public void delete(Education education) {
-
+        em.getTransaction().begin();
+        em.remove(education);
+        em.getTransaction().commit();
     }
 
 }

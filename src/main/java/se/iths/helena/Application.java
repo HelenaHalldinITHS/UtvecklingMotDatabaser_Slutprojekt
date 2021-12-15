@@ -22,7 +22,7 @@ public class Application {
         educationDao.showInfo(education1);
 
  */
-        educationDao.showAll();
+        educationDao.delete(educationDao.getById(1));
 
 
         /* EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
