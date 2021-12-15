@@ -41,6 +41,8 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao  {
 
     @Override
     public void delete(Student student) {
-
+        getEntityManager().getTransaction().begin();
+        getEntityManager().remove(student);
+        getEntityManager().getTransaction().commit();
     }
 }
