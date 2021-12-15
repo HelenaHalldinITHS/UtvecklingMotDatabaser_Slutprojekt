@@ -37,12 +37,12 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public Course getById(int id) {
-        return null;
+        return em.find(Course.class, id);
     }
 
     @Override
     public void showAll() {
-
+        em.createQuery("SELECT c FROM Course c", Course.class).getResultList().forEach(Course::print);
     }
 
     @Override
