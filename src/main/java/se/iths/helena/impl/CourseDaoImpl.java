@@ -18,12 +18,16 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public void add(Course course) {
-
+        em.getTransaction().begin();
+        em.persist(course);
+        em.getTransaction().commit();
     }
 
     @Override
     public void update(Course course) {
-
+        em.getTransaction().begin();
+        em.merge(course);
+        em.getTransaction().commit();
     }
 
     @Override
