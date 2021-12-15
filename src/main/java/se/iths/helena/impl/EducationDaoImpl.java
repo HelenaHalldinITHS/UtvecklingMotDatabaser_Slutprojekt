@@ -6,6 +6,8 @@ import jakarta.persistence.Persistence;
 import se.iths.helena.dao.EducationDao;
 import se.iths.helena.entities.Education;
 
+import java.util.List;
+
 public class EducationDaoImpl implements EducationDao {
     EntityManagerFactory emf;
     EntityManager em;
@@ -31,16 +33,26 @@ public class EducationDaoImpl implements EducationDao {
 
     @Override
     public void showInfo(Education education) {
-
+        education.print();
     }
 
     @Override
-    public void showAll() {
+    public Education getById(int id) {
+        return em.find(Education.class, id);
+    }
 
+
+    @Override
+    public void showAll() {
+       /* List<Education> result = em.createQuery("SELECT e FROM Education e", Education.class).getResultList();
+        result.forEach(this::print);
+
+        */
     }
 
     @Override
     public void delete(Education education) {
 
     }
+
 }
