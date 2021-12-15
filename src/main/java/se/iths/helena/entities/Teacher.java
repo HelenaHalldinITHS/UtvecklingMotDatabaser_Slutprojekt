@@ -37,4 +37,10 @@ public class Teacher {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public void print(){
+        System.out.println("id:" + id +
+                ", firstName:" + firstName +
+                ", lastName:" + lastName);
+    }
 }

@@ -44,4 +44,5 @@ public class CourseDaoImpl extends DaoImpl implements CourseDao {
         getEntityManager().remove(course);
         getEntityManager().getTransaction().commit();
     }
+
 }
