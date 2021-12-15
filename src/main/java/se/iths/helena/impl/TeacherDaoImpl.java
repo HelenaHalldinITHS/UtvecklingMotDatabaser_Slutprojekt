@@ -25,7 +25,7 @@ public class TeacherDaoImpl extends DaoImpl implements TeacherDao {
 
     @Override
     public void showInfo(Teacher teacher) {
-        teacher.print();
+        print(teacher);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class TeacherDaoImpl extends DaoImpl implements TeacherDao {
 
     @Override
     public void showAll() {
-        getEntityManager().createQuery("SELECT t FROM Teacher t", Teacher.class).getResultList().forEach(Teacher::print);
+        getEntityManager().createQuery("SELECT t FROM Teacher t", Teacher.class).getResultList().forEach(this::print);
     }
 
     @Override
@@ -43,5 +43,11 @@ public class TeacherDaoImpl extends DaoImpl implements TeacherDao {
         getEntityManager().getTransaction().begin();
         getEntityManager().remove(teacher);
         getEntityManager().getTransaction().commit();
+    }
+
+    private void print(Teacher teacher){
+        System.out.println("id:" + teacher.getId() +
+                ", firstName:" + teacher.getFirstName() +
+                ", lastName:" + teacher.getLastName());
     }
 }

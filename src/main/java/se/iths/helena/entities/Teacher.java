@@ -42,9 +42,4 @@ public class Teacher {
         this.lastName = lastName;
     }
 
-    public void print(){
-        System.out.println("id:" + id +
-                ", firstName:" + firstName +
-                ", lastName:" + lastName);
-    }
 }

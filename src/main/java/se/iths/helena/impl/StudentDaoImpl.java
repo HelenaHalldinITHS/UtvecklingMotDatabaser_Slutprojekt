@@ -2,10 +2,12 @@ package se.iths.helena.impl;
 
 import jakarta.persistence.TypedQuery;
 import se.iths.helena.dao.StudentDao;
+import se.iths.helena.entities.Course;
 import se.iths.helena.entities.Education;
 import se.iths.helena.entities.Student;
 
 import java.util.List;
+import java.util.Optional;
 
 public class StudentDaoImpl extends DaoImpl implements StudentDao {
 
@@ -29,7 +31,7 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao {
 
     @Override
     public void showInfo(Student student) {
-        student.print();
+        print(student);
     }
 
     @Override
@@ -39,7 +41,7 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao {
 
     @Override
     public void showAll() {
-        getEntityManager().createQuery("SELECT s FROM Student s", Student.class).getResultList().forEach(Student::print);
+        getEntityManager().createQuery("SELECT s FROM Student s", Student.class).getResultList().forEach(this::print);
     }
 
     @Override
@@ -76,5 +78,24 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao {
             System.out.println("The student with id " + student.getId() + " is no longer registered to the education " + education);
         } else
             System.out.println("The student with id " + student.getId() + " where not registered to anny education");
+    }
+
+    private void print(Student student) {
+        String educationID = getEducationID(student);
+
+        System.out.println("id:" + student.getId() +
+                ", firstName:" + student.getFirstName() +
+                ", lastName:" + student.getLastName() +
+                ", education_id:" + educationID);
+    }
+
+
+    private String getEducationID(Student student) {
+        Optional<Education> education = Optional.ofNullable(student.getEducation());
+
+        if (education.isEmpty())
+            return " ";
+        else
+            return String.valueOf(education.get().getId());
     }
 }
