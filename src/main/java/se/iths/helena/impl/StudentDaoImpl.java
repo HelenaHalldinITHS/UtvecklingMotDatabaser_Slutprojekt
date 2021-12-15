@@ -1,6 +1,7 @@
 package se.iths.helena.impl;
 
 import se.iths.helena.dao.StudentDao;
+import se.iths.helena.entities.Education;
 import se.iths.helena.entities.Student;
 
 public class StudentDaoImpl extends DaoImpl implements StudentDao  {
@@ -25,12 +26,12 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao  {
 
     @Override
     public void showInfo(Student student) {
-
+        student.print();
     }
 
     @Override
     public Student getById(int id) {
-        return null;
+        return getEntityManager().find(Student.class, id);
     }
 
     @Override
