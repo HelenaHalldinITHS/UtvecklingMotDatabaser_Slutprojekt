@@ -30,4 +30,9 @@ public class TeacherCourseRelation {
         this.id.setCourse(course);
     }
 
+    public void print(){
+        System.out.println("teacher_id:" + id.getTeacher().getId() + "(" + id.getTeacher().getFirstName() + " " + id.getTeacher().getLastName() + ")" +
+                ", course_id:" + id.getCourse().getId() + "(" + id.getCourse().getName() + ")");
+    }
+
 }
