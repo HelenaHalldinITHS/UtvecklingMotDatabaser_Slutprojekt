@@ -47,6 +47,8 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public void delete(Course course) {
-
+        em.getTransaction().begin();
+        em.remove(course);
+        em.getTransaction().commit();
     }
 }
