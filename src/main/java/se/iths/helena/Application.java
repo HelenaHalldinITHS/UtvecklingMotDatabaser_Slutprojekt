@@ -3,12 +3,21 @@ package se.iths.helena;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import se.iths.helena.dao.EducationDao;
 import se.iths.helena.entities.*;
+import se.iths.helena.impl.EducationDaoImpl;
 
 public class Application {
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
+        EducationDao educationDao = new EducationDaoImpl();
+        Education education1 = new Education("Javautvecklare");
+        Education education2 = new Education("UX-designer");
+        //educationDao.add(education1);
+        educationDao.add(education2);
+
+
+        /* EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
         EntityManager em = emf.createEntityManager();
 
         Education education1 = new Education("Javautvecklare");
@@ -39,6 +48,8 @@ public class Application {
         em.persist(tcr4);
         em.getTransaction().commit();
         em.close();
+
+         */
 
     }
 }
