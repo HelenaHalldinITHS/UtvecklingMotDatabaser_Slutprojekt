@@ -36,7 +36,7 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao  {
 
     @Override
     public void showAll() {
-
+        getEntityManager().createQuery("SELECT s FROM Student s", Student.class).getResultList().forEach(Student::print);
     }
 
     @Override

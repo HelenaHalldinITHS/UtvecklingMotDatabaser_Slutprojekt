@@ -38,7 +38,6 @@ public class EducationDaoImpl extends DaoImpl implements EducationDao {
     @Override
     public void showAll() {
         getEntityManager().createQuery("SELECT e FROM Education e", Education.class).getResultList().forEach(Education::print);
-
     }
 
     @Override
