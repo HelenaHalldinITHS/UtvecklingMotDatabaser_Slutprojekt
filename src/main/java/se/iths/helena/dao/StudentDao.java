@@ -1,6 +1,10 @@
 package se.iths.helena.dao;
 
+import se.iths.helena.entities.Course;
+import se.iths.helena.entities.Education;
 import se.iths.helena.entities.Student;
+
+import java.util.List;
 
 public interface StudentDao {
 
@@ -15,4 +19,7 @@ public interface StudentDao {
     void showAll();
 
     void delete(Student student);
+
+    List<Student> getByEducation(Education education);
+
 }

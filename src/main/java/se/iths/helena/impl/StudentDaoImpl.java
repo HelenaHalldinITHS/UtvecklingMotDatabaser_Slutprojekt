@@ -1,7 +1,11 @@
 package se.iths.helena.impl;
 
+import jakarta.persistence.TypedQuery;
 import se.iths.helena.dao.StudentDao;
+import se.iths.helena.entities.Education;
 import se.iths.helena.entities.Student;
+
+import java.util.List;
 
 public class StudentDaoImpl extends DaoImpl implements StudentDao  {
 
@@ -43,5 +47,13 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao  {
         getEntityManager().getTransaction().begin();
         getEntityManager().remove(student);
         getEntityManager().getTransaction().commit();
+    }
+
+    @Override
+    public List<Student> getByEducation(Education education) {
+        TypedQuery<Student> query = getEntityManager()
+                .createQuery("SELECT s FROM Student s WHERE s.education = :education", Student.class);
+        query.setParameter("education", education);
+        return query.getResultList();
     }
 }
