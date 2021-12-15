@@ -1,6 +1,5 @@
 package se.iths.helena.dao;
 
-import se.iths.helena.entities.Course;
 import se.iths.helena.entities.Education;
 import se.iths.helena.entities.Student;
 
@@ -23,5 +22,7 @@ public interface StudentDao {
     List<Student> getByEducation(Education education);
 
     void registerToEducation(Student student, Education education);
+
+    void unregisterToEducation(Student student);
 
 }

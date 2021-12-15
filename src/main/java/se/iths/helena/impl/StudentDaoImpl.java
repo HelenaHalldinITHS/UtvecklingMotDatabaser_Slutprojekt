@@ -7,9 +7,9 @@ import se.iths.helena.entities.Student;
 
 import java.util.List;
 
-public class StudentDaoImpl extends DaoImpl implements StudentDao  {
+public class StudentDaoImpl extends DaoImpl implements StudentDao {
 
-    public StudentDaoImpl(){
+    public StudentDaoImpl() {
         super();
     }
 
@@ -59,10 +59,21 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao  {
 
     @Override
     public void registerToEducation(Student student, Education education) {
-        if (student.getEducation() == null){
+        if (student.getEducation() == null) {
             student.setEducation(education);
             update(student);
         } else
             System.out.println("The student with id " + student.getId() + " is already registered to an education (" + student.getEducation().getName() + ")");
+    }
+
+    @Override
+    public void unregisterToEducation(Student student) {
+        if (student.getEducation() != null) {
+            String education = student.getEducation().getName();
+            student.setEducation(null);
+            update(student);
+            System.out.println("The student with id " + student.getId() + " is no longer registered to the education " + education);
+        } else
+            System.out.println("The student with id " + student.getId() + " where not registered to anny education");
     }
 }
