@@ -8,6 +8,7 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao  {
     public StudentDaoImpl(){
         super();
     }
+
     @Override
     public void add(Student student) {
         getEntityManager().getTransaction().begin();
@@ -17,7 +18,9 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao  {
 
     @Override
     public void update(Student student) {
-
+        getEntityManager().getTransaction().begin();
+        getEntityManager().merge(student);
+        getEntityManager().getTransaction().commit();
     }
 
     @Override
