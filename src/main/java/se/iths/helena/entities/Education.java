@@ -12,7 +12,8 @@ public class Education {
     private int id;
     private String Name;
 
-    public Education(){}
+    public Education() {
+    }
 
     public Education(String name) {
         Name = name;
