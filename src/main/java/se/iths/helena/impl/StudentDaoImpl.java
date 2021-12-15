@@ -1,7 +1,6 @@
 package se.iths.helena.impl;
 
 import se.iths.helena.dao.StudentDao;
-import se.iths.helena.entities.Education;
 import se.iths.helena.entities.Student;
 
 public class StudentDaoImpl extends DaoImpl implements StudentDao  {
