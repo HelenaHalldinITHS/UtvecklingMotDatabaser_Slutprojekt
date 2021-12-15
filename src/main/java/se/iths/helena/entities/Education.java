@@ -26,4 +26,9 @@ public class Education {
     public void setName(String name) {
         Name = name;
     }
+
+    public void print(){
+        System.out.println("id:" + id +
+                    ", Name:" + Name);
+    }
 }
