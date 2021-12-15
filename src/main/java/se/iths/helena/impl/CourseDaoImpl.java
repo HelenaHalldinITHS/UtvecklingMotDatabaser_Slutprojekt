@@ -6,6 +6,7 @@ import se.iths.helena.entities.Course;
 import se.iths.helena.entities.Education;
 
 import java.util.List;
+import java.util.Optional;
 
 public class CourseDaoImpl extends DaoImpl implements CourseDao {
 
@@ -29,7 +30,7 @@ public class CourseDaoImpl extends DaoImpl implements CourseDao {
 
     @Override
     public void showInfo(Course course) {
-        course.print();
+        print(course);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class CourseDaoImpl extends DaoImpl implements CourseDao {
 
     @Override
     public void showAll() {
-        getEntityManager().createQuery("SELECT c FROM Course c", Course.class).getResultList().forEach(Course::print);
+        getEntityManager().createQuery("SELECT c FROM Course c", Course.class).getResultList().forEach(this::print);
     }
 
     @Override
@@ -75,6 +76,23 @@ public class CourseDaoImpl extends DaoImpl implements CourseDao {
             System.out.println("The course with id " + course.getId() + " is no longer part of the education " + education);
         } else
             System.out.println("The course with id " + course.getId() + " where not a part of anny education");
+    }
+
+    private void print(Course course) {
+        String educationID = getEducationID(course);
+
+        System.out.println("id:" + course.getId() +
+                ", name:" + course.getName() + ", points:" +
+                course.getPoints() + ", education_id:" + educationID);
+    }
+
+    private String getEducationID(Course course) {
+        Optional<Education> education = Optional.ofNullable(course.getEducation());
+
+        if (education.isEmpty())
+            return " ";
+        else
+            return String.valueOf(education.get().getId());
     }
 
 }
