@@ -2,6 +2,7 @@ package se.iths.helena.impl;
 
 import se.iths.helena.dao.TeacherCourseRelationDao;
 import se.iths.helena.entities.Course;
+import se.iths.helena.entities.Student;
 import se.iths.helena.entities.Teacher;
 import se.iths.helena.entities.TeacherCourseRelation;
 
@@ -35,6 +36,7 @@ public class TeacherCourseRelationDaoImpl extends DaoImpl implements TeacherCour
 
     @Override
     public void showAll() {
-
+        getEntityManager().createQuery("SELECT t FROM TeacherCourseRelation t", TeacherCourseRelation.class)
+                .getResultList().forEach(TeacherCourseRelation::print);
     }
 }
