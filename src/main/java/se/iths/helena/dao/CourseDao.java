@@ -20,4 +20,8 @@ public interface CourseDao {
     void delete(Course course);
 
     List<Course> getByEducation(Education education);
+
+    void addCourseToEducation(Course course, Education education);
+
+    void removeCourseFromEducation(Course course);
 }

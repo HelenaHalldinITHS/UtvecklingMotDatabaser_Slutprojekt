@@ -23,6 +23,11 @@ public class Course {
         this.points = points;
     }
 
+    public Course(String name, int points) {
+        this.name = name;
+        this.points = points;
+    }
+
     public int getId() {
         return id;
     }

@@ -59,11 +59,12 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao {
 
     @Override
     public void registerToEducation(Student student, Education education) {
-        if (student.getEducation() == null) {
+        if (student.getEducation() != null)
+            System.out.println("The student with id " + student.getId() + " is already registered to an education (" + student.getEducation().getName() + ")");
+        else {
             student.setEducation(education);
             update(student);
-        } else
-            System.out.println("The student with id " + student.getId() + " is already registered to an education (" + student.getEducation().getName() + ")");
+        }
     }
 
     @Override
