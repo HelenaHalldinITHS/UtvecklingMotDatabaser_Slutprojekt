@@ -1,34 +1,27 @@
 package se.iths.helena.impl;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import se.iths.helena.dao.EducationDao;
 import se.iths.helena.entities.Education;
 
-import java.util.List;
 
-public class EducationDaoImpl implements EducationDao {
-    EntityManagerFactory emf;
-    EntityManager em;
+public class EducationDaoImpl extends DaoImpl implements EducationDao {
 
     public EducationDaoImpl() {
-        emf = Persistence.createEntityManagerFactory("jpa");
-        em = emf.createEntityManager();
+        super();
     }
 
     @Override
     public void add(Education education) {
-        em.getTransaction().begin();
-        em.persist(education);
-        em.getTransaction().commit();
+        getEntityManager().getTransaction().begin();
+        getEntityManager().persist(education);
+        getEntityManager().getTransaction().commit();
     }
 
     @Override
     public void update(Education education) {
-        em.getTransaction().begin();
-        em.merge(education);
-        em.getTransaction().commit();
+        getEntityManager().getTransaction().begin();
+        getEntityManager().merge(education);
+        getEntityManager().getTransaction().commit();
     }
 
     @Override
@@ -38,21 +31,21 @@ public class EducationDaoImpl implements EducationDao {
 
     @Override
     public Education getById(int id) {
-        return em.find(Education.class, id);
+        return getEntityManager().find(Education.class, id);
     }
 
 
     @Override
     public void showAll() {
-       em.createQuery("SELECT e FROM Education e", Education.class).getResultList().forEach(Education::print);
+        getEntityManager().createQuery("SELECT e FROM Education e", Education.class).getResultList().forEach(Education::print);
 
     }
 
     @Override
     public void delete(Education education) {
-        em.getTransaction().begin();
-        em.remove(education);
-        em.getTransaction().commit();
+        getEntityManager().getTransaction().begin();
+        getEntityManager().remove(education);
+        getEntityManager().getTransaction().commit();
     }
 
 }
