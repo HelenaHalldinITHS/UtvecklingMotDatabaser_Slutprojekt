@@ -1,10 +1,7 @@
 package se.iths.helena.impl;
 
 import se.iths.helena.dao.TeacherCourseRelationDao;
-import se.iths.helena.entities.Course;
-import se.iths.helena.entities.Student;
-import se.iths.helena.entities.Teacher;
-import se.iths.helena.entities.TeacherCourseRelation;
+import se.iths.helena.entities.*;
 
 public class TeacherCourseRelationDaoImpl extends DaoImpl implements TeacherCourseRelationDao {
 
