@@ -10,7 +10,7 @@ public class CourseDaoImpl implements CourseDao {
     private EntityManagerFactory emf;
     private EntityManager em;
 
-    CourseDaoImpl(){
+    public CourseDaoImpl(){
         emf = Persistence.createEntityManagerFactory("jpa");
         em = emf.createEntityManager();
     }
