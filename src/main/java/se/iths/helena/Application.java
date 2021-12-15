@@ -12,7 +12,7 @@ public class Application {
     public static void main(String[] args) {
         EducationDao educationDao = new EducationDaoImpl();
 
-
+/*
         Education education1 = new Education("Java");
         Education education2 = new Education("UX-designer");
         educationDao.add(education1);
@@ -20,6 +20,9 @@ public class Application {
         Education e = educationDao.getById(1);
         educationDao.showInfo(e);
         educationDao.showInfo(education1);
+
+ */
+        educationDao.showAll();
 
 
         /* EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");

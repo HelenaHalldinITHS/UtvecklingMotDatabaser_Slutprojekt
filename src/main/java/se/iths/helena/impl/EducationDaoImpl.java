@@ -44,10 +44,8 @@ public class EducationDaoImpl implements EducationDao {
 
     @Override
     public void showAll() {
-       /* List<Education> result = em.createQuery("SELECT e FROM Education e", Education.class).getResultList();
-        result.forEach(this::print);
-
-        */
+       List<Education> result = em.createQuery("SELECT e FROM Education e", Education.class).getResultList();
+       result.forEach(Education::print);
     }
 
     @Override
