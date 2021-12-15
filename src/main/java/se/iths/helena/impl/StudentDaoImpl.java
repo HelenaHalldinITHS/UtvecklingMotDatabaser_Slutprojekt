@@ -10,7 +10,9 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao  {
     }
     @Override
     public void add(Student student) {
-
+        getEntityManager().getTransaction().begin();
+        getEntityManager().persist(student);
+        getEntityManager().getTransaction().commit();
     }
 
     @Override
