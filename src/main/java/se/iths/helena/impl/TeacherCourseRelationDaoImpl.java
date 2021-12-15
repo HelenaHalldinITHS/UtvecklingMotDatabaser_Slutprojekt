@@ -27,8 +27,10 @@ public class TeacherCourseRelationDaoImpl extends DaoImpl implements TeacherCour
     }
 
     @Override
-    public void remove(Teacher teacher, Course course) {
-
+    public void remove(TeacherCourseRelation relation) {
+        getEntityManager().getTransaction().begin();
+        getEntityManager().remove(relation);
+        getEntityManager().getTransaction().commit();
     }
 
     @Override

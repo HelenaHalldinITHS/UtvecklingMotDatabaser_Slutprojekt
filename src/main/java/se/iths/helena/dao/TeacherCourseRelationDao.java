@@ -9,7 +9,7 @@ public interface TeacherCourseRelationDao {
 
     void add(TeacherCourseRelation relation);
 
-    void remove(Teacher teacher, Course course);
+    void remove(TeacherCourseRelation relation);
 
     void showAll();
 }
