@@ -9,6 +9,8 @@ public interface EducationDao {
 
     void showInfo(Education education);
 
+    Education getById(int id);
+
     void showAll();
 
     void delete(Education education);
