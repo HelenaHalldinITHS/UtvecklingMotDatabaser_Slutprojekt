@@ -46,4 +46,9 @@ public class Course {
     public void setPoints(int points) {
         this.points = points;
     }
+
+    public void print(){
+        System.out.println("id:" + id +
+                ", name:" + name + ", points:" + points);
+    }
 }
