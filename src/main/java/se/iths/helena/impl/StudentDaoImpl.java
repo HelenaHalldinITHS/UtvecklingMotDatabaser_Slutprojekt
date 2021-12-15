@@ -56,4 +56,13 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao  {
         query.setParameter("education", education);
         return query.getResultList();
     }
+
+    @Override
+    public void registerToEducation(Student student, Education education) {
+        if (student.getEducation() == null){
+            student.setEducation(education);
+            update(student);
+        } else
+            System.out.println("The student with id " + student.getId() + " is already registered to an education (" + student.getEducation().getName() + ")");
+    }
 }

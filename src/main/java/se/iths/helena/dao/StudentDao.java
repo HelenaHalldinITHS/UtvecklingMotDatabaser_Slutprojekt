@@ -22,4 +22,6 @@ public interface StudentDao {
 
     List<Student> getByEducation(Education education);
 
+    void registerToEducation(Student student, Education education);
+
 }
