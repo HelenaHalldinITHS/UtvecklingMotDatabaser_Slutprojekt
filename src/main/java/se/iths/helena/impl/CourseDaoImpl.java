@@ -10,7 +10,7 @@ public class CourseDaoImpl implements CourseDao {
     private EntityManagerFactory emf;
     private EntityManager em;
 
-    public CourseDaoImpl(){
+    public CourseDaoImpl() {
         emf = Persistence.createEntityManagerFactory("jpa");
         em = emf.createEntityManager();
     }
@@ -32,7 +32,7 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public void showInfo(Course course) {
-
+        course.print();
     }
 
     @Override
