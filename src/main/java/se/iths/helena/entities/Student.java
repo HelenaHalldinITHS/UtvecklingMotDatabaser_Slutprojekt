@@ -51,4 +51,11 @@ public class Student {
     public void setEducation(Education education) {
         this.education = education;
     }
+
+    public void print(){
+        System.out.println("id:" + id +
+                ", firstName:" + firstName +
+                ", lastName:" + lastName +
+                ", education_id:" + education.getId() + "(" + education.getName() + ")");
+    }
 }
