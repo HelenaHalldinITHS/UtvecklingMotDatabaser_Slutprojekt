@@ -1,7 +1,6 @@
 package se.iths.helena.dao;
 
 import se.iths.helena.entities.Course;
-import se.iths.helena.entities.Education;
 
 public interface CourseDao {
 
