@@ -34,6 +34,11 @@ public class TeacherCourseRelationDaoImpl extends DaoImpl implements TeacherCour
     @Override
     public void showAll() {
         getEntityManager().createQuery("SELECT t FROM TeacherCourseRelation t", TeacherCourseRelation.class)
-                .getResultList().forEach(TeacherCourseRelation::print);
+                .getResultList().forEach(this::print);
+    }
+
+    public void print(TeacherCourseRelation relation){
+        System.out.println("teacher_id:" + relation.getTeacher().getId() + "(" + relation.getTeacher().getFirstName() + " " + relation.getTeacher().getLastName() + ")" +
+                ", course_id:" + relation.getCourse().getId() + "(" + relation.getCourse().getName() + ")");
     }
 }
