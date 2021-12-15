@@ -26,7 +26,7 @@ public class EducationDaoImpl extends DaoImpl implements EducationDao {
 
     @Override
     public void showInfo(Education education) {
-        education.print();
+        print(education);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class EducationDaoImpl extends DaoImpl implements EducationDao {
 
     @Override
     public void showAll() {
-        getEntityManager().createQuery("SELECT e FROM Education e", Education.class).getResultList().forEach(Education::print);
+        getEntityManager().createQuery("SELECT e FROM Education e", Education.class).getResultList().forEach(this::print);
     }
 
     @Override
@@ -47,4 +47,8 @@ public class EducationDaoImpl extends DaoImpl implements EducationDao {
         getEntityManager().getTransaction().commit();
     }
 
+    private void print(Education education){
+        System.out.println("id:" + education.getId() +
+                ", name:" + education.getName());
+    }
 }
