@@ -13,7 +13,6 @@ import se.iths.helena.impl.StudentDaoImpl;
 import se.iths.helena.impl.TeacherDaoImpl;
 
 
-
 public class EditApp {
     EducationDao educationDao;
     CourseDao courseDao;
@@ -27,7 +26,7 @@ public class EditApp {
         teacherDao = new TeacherDaoImpl();
     }
 
-    public void run(){
+    public void run() {
         do {
             printMenu();
             int choice = getChoice();
@@ -66,12 +65,12 @@ public class EditApp {
     // --- Education ---
     private void editEducations() {
         printEditEducationMenu();
-        int choice = InputHandler.getIntegerInput(0,3);
+        int choice = InputHandler.getIntegerInput(0, 3);
         runEducationChoice(choice);
     }
 
     private void runEducationChoice(int choice) {
-        switch (choice){
+        switch (choice) {
             case 1 -> addEducation();
             case 2 -> deleteEducation();
             case 3 -> updateEducation();
@@ -80,27 +79,23 @@ public class EditApp {
     }
 
     private void updateEducation() {
-        System.out.println("What is the id of the education you want to edit? ");
-        System.out.println();
+        System.out.println("What is the id of the education you want to edit? \n");
         int id = InputHandler.getIntegerInput();
         Education education = educationDao.getById(id);
-        System.out.println("What is the new name of the of the education?");
-        System.out.println();
+        System.out.println("What is the new name of the of the education? \n");
         String name = InputHandler.getStringInput();
         education.setName(name);
         educationDao.update(education);
     }
 
     private void deleteEducation() {
-        System.out.println("What is the id of the education you want to delete? ");
-        System.out.println();
+        System.out.println("What is the id of the education you want to delete? \n");
         int id = InputHandler.getIntegerInput();
         educationDao.delete(educationDao.getById(id));
     }
 
     private void addEducation() {
-        System.out.println("What is the name of the new education? ");
-        System.out.println();
+        System.out.println("What is the name of the new education? \n");
         String name = InputHandler.getStringInput();
         educationDao.add(new Education(name));
     }
@@ -119,12 +114,12 @@ public class EditApp {
     // --- Course ---
     private void editCourses() {
         printEditCourseMenu();
-        int choice = InputHandler.getIntegerInput(0,5);
+        int choice = InputHandler.getIntegerInput(0, 5);
         runCourseChoice(choice);
     }
 
     private void runCourseChoice(int choice) {
-        switch (choice){
+        switch (choice) {
             case 1 -> addCourse();
             case 2 -> deleteCourse();
             case 3 -> updateCourse();
@@ -137,12 +132,10 @@ public class EditApp {
     private void deleteCourseFromEducation() {
         System.out.println("What is the id of the course you want to remove from its education? \n");
         int courseId = InputHandler.getIntegerInput();
-        Course course = courseDao.getById(courseId);
-
-        courseDao.removeCourseFromEducation(course);
+        courseDao.removeCourseFromEducation(courseDao.getById(courseId));
     }
 
-    private void addCourseToEducation(){
+    private void addCourseToEducation() {
         System.out.println("What is the id of the education you want to add a course to? \n");
         int educationId = InputHandler.getIntegerInput();
         Education education = educationDao.getById(educationId);
@@ -151,7 +144,7 @@ public class EditApp {
         int courseId = InputHandler.getIntegerInput();
         Course course = courseDao.getById(courseId);
 
-        courseDao.addCourseToEducation(course,education);
+        courseDao.addCourseToEducation(course, education);
     }
 
     private void updateCourse() {
@@ -181,7 +174,7 @@ public class EditApp {
         String name = InputHandler.getStringInput();
         System.out.println("How many points is the new course? \n");
         int points = InputHandler.getIntegerInput();
-        courseDao.add(new Course(name,points));
+        courseDao.add(new Course(name, points));
     }
 
     private void printEditCourseMenu() {
@@ -200,12 +193,12 @@ public class EditApp {
     // --- Student ---
     private void editStudents() {
         printEditStudentMenu();
-        int choice = InputHandler.getIntegerInput(0,5);
+        int choice = InputHandler.getIntegerInput(0, 5);
         runStudentChoice(choice);
     }
 
     private void runStudentChoice(int choice) {
-        switch (choice){
+        switch (choice) {
             case 1 -> addStudent();
             case 2 -> deleteStudent();
             case 3 -> updateStudent();
@@ -215,12 +208,22 @@ public class EditApp {
         System.out.println();
     }
 
-    //TODO
     private void deleteStudentFromEducation() {
+        System.out.println("What is the id of the student you want to unregister from its education? \n");
+        int studentId = InputHandler.getIntegerInput();
+        studentDao.unregisterToEducation(studentDao.getById(studentId));
     }
 
-    //TODO
     private void addStudentToEducation() {
+        System.out.println("What is the id of the education you want to add a student to? \n");
+        int educationId = InputHandler.getIntegerInput();
+        Education education = educationDao.getById(educationId);
+
+        System.out.println("What is the id of the student you want to add? \n");
+        int studentId = InputHandler.getIntegerInput();
+        Student student = studentDao.getById(studentId);
+
+        studentDao.registerToEducation(student, education);
     }
 
     private void updateStudent() {
@@ -250,7 +253,7 @@ public class EditApp {
         String firstName = InputHandler.getStringInput();
         System.out.println("What is the last name of the new student? \n");
         String lastName = InputHandler.getStringInput();
-        studentDao.add(new Student(firstName,lastName));
+        studentDao.add(new Student(firstName, lastName));
     }
 
     private void printEditStudentMenu() {
