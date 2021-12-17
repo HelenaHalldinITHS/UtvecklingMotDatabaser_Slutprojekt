@@ -39,7 +39,8 @@ public class MainApp {
 
     private void printMainMenu() {
         System.out.println("""
-                Welcome! Choose one of the following by writing its corresponding number:
+                Welcome!
+                Choose one of the following by writing its corresponding number:
                 1. Get data
                 2. Edit data
                 0. End application
