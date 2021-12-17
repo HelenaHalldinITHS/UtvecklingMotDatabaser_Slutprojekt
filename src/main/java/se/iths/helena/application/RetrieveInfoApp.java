@@ -83,7 +83,7 @@ public class RetrieveInfoApp {
 
     private void printEducationInfoMenu() {
         System.out.println("""
-                What would you like do?
+                What would you like to do?
                 Choose one of the following by writing its corresponding number:
                 1. Show all educations
                 2. Show info about a specific education
@@ -124,7 +124,7 @@ public class RetrieveInfoApp {
 
     private void printCourseInfoMenu() {
         System.out.println("""
-                What would you like do?
+                What would you like to do?
                 Choose one of the following by writing its corresponding number:
                 1. Show all courses
                 2. Show info about a specific course
@@ -165,7 +165,7 @@ public class RetrieveInfoApp {
 
     private void printStudentInfoMenu() {
         System.out.println("""
-                What would you like do?
+                What would you like to do?
                 Choose one of the following by writing its corresponding number:
                 1. Show all student
                 2. Show info about a specific student
@@ -198,7 +198,7 @@ public class RetrieveInfoApp {
 
     private void printTeacherInfoMenu() {
         System.out.println("""
-                What would you like do?
+                What would you like to do?
                 Choose one of the following by writing its corresponding number:
                 1. Show all teachers
                 2. Show info about a specific teacher

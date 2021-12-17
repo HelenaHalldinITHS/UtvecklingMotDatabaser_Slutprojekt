@@ -32,4 +32,8 @@ public class InputHandler {
         } while (true);
         return choice;
     }
+
+    public static String getStringInput(){
+        return scanner.nextLine();
+    }
 }

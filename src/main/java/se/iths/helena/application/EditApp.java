@@ -4,10 +4,13 @@ import se.iths.helena.dao.CourseDao;
 import se.iths.helena.dao.EducationDao;
 import se.iths.helena.dao.StudentDao;
 import se.iths.helena.dao.TeacherDao;
+import se.iths.helena.entities.Education;
 import se.iths.helena.impl.CourseDaoImpl;
 import se.iths.helena.impl.EducationDaoImpl;
 import se.iths.helena.impl.StudentDaoImpl;
 import se.iths.helena.impl.TeacherDaoImpl;
+
+import java.util.Scanner;
 
 public class EditApp {
     EducationDao educationDao;
@@ -62,6 +65,34 @@ public class EditApp {
 
     // --- Education ---
     private void editEducations() {
+        printEditEducationMenu();
+        int choice = InputHandler.getIntegerInput(0,3);
+        runEducationChoice(choice);
+    }
+
+    private void runEducationChoice(int choice) {
+        switch (choice){
+            case 1 -> addEducation();
+        }
+        System.out.println();
+    }
+
+    private void addEducation() {
+        System.out.println("What is the name of the new education? ");
+        System.out.println();
+        String name = InputHandler.getStringInput();
+        educationDao.add(new Education(name));
+    }
+
+    private void printEditEducationMenu() {
+        System.out.println("""
+                What would you like to do?
+                Choose one of the following by writing its corresponding number:
+                1. Add Education
+                2. Delete Education
+                3. Edit Education
+                0. Exit
+                """);
     }
 
     // --- Course ---
