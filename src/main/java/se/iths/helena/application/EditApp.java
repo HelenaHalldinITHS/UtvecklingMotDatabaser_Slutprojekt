@@ -129,10 +129,34 @@ public class EditApp {
             case 1 -> addCourse();
             case 2 -> deleteCourse();
             case 3 -> updateCourse();
+            case 4 -> addCourseToEducation();
+            case 5 -> deleteCourseFromEducation();
         }
         System.out.println();
     }
 
+    private void deleteCourseFromEducation() {
+        System.out.println("What is the id of the course you want to remove from its education? ");
+        System.out.println();
+        int courseId = InputHandler.getIntegerInput();
+        Course course = courseDao.getById(courseId);
+
+        courseDao.removeCourseFromEducation(course);
+    }
+
+    private void addCourseToEducation(){
+        System.out.println("What is the id of the education you want to add a course to? ");
+        System.out.println();
+        int educationId = InputHandler.getIntegerInput();
+        Education education = educationDao.getById(educationId);
+
+        System.out.println("What is the id of the course you want to add? ");
+        System.out.println();
+        int courseId = InputHandler.getIntegerInput();
+        Course course = courseDao.getById(courseId);
+
+        courseDao.addCourseToEducation(course,education);
+    }
     private void updateCourse() {
         System.out.println("What is the id of the course you want to edit? ");
         System.out.println();
