@@ -52,6 +52,28 @@ public class EditApp {
     }
 
     private void runChoice(int choice) {
-
+        switch (choice) {
+            case 1 -> editEducations();
+            case 2 -> editCourses();
+            case 3 -> editStudents();
+            case 4 -> editTeachers();
+        }
     }
+
+    // --- Education ---
+    private void editEducations() {
+    }
+
+    // --- Course ---
+    private void editCourses() {
+    }
+
+    // --- Student ---
+    private void editStudents() {
+    }
+
+    // --- Teacher ---
+    private void editTeachers() {
+    }
+
 }
