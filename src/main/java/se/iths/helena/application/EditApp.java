@@ -4,6 +4,7 @@ import se.iths.helena.dao.CourseDao;
 import se.iths.helena.dao.EducationDao;
 import se.iths.helena.dao.StudentDao;
 import se.iths.helena.dao.TeacherDao;
+import se.iths.helena.entities.Course;
 import se.iths.helena.entities.Education;
 import se.iths.helena.impl.CourseDaoImpl;
 import se.iths.helena.impl.EducationDaoImpl;
@@ -109,15 +110,48 @@ public class EditApp {
         System.out.println("""
                 What would you like to do?
                 Choose one of the following by writing its corresponding number:
-                1. Add Education
-                2. Delete Education
-                3. Edit Education
+                1. Add education
+                2. Delete education
+                3. Edit education
                 0. Exit
                 """);
     }
 
     // --- Course ---
     private void editCourses() {
+        printEditCourseMenu();
+        int choice = InputHandler.getIntegerInput(0,5);
+        runCourseChoice(choice);
+    }
+
+    private void runCourseChoice(int choice) {
+        switch (choice){
+            case 1 -> addCourse();
+        }
+        System.out.println();
+    }
+
+    private void addCourse() {
+        System.out.println("What is the name of the new course? ");
+        System.out.println();
+        String name = InputHandler.getStringInput();
+        System.out.println("How many points is the new course? ");
+        System.out.println();
+        int points = InputHandler.getIntegerInput();
+        courseDao.add(new Course(name,points));
+    }
+
+    private void printEditCourseMenu() {
+        System.out.println("""
+                What would you like to do?
+                Choose one of the following by writing its corresponding number:
+                1. Add course
+                2. Delete course
+                3. Edit course
+                4. Add course to education
+                5. Remove course from education
+                0. Exit
+                """);
     }
 
     // --- Student ---
