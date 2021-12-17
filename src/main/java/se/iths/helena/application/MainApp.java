@@ -1,4 +1,4 @@
-package se.iths.helena;
+package se.iths.helena.application;
 
 import se.iths.helena.dao.*;
 import se.iths.helena.entities.*;
