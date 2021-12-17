@@ -3,15 +3,19 @@ package se.iths.helena;
 import se.iths.helena.dao.CourseDao;
 import se.iths.helena.dao.EducationDao;
 import se.iths.helena.dao.StudentDao;
+import se.iths.helena.dao.TeacherDao;
 import se.iths.helena.entities.Education;
+import se.iths.helena.entities.Teacher;
 import se.iths.helena.impl.CourseDaoImpl;
 import se.iths.helena.impl.EducationDaoImpl;
 import se.iths.helena.impl.StudentDaoImpl;
+import se.iths.helena.impl.TeacherDaoImpl;
 
 public class RetrieveInfoApp {
     EducationDao educationDao = new EducationDaoImpl();
     CourseDao courseDao = new CourseDaoImpl();
     StudentDao studentDao = new StudentDaoImpl();
+    TeacherDao teacherDao = new TeacherDaoImpl();
 
     public static void run() {
         RetrieveInfoApp retrieveInfoApp = new RetrieveInfoApp();
@@ -171,11 +175,35 @@ public class RetrieveInfoApp {
 
     // --- Teacher ---
     private void getTeacherInfo() {
+        printTeacherInfoMenu();
+        int choice = InputHandler.getIntegerInput(0,2);
+        runTeacherInfoChoice(choice);
     }
 
+    private void runTeacherInfoChoice(int choice) {
+        switch (choice){
+            case 1 -> teacherDao.showAll();
+            case 2 -> showTeacherById();
+        }
+        System.out.println();
+    }
 
+    private void showTeacherById() {
+        System.out.println("What is the id of the teacher?");
+        System.out.println();
+        int id = InputHandler.getIntegerInput();
+        teacherDao.showInfo(teacherDao.getById(id));
+    }
 
-
+    private void printTeacherInfoMenu() {
+        System.out.println("""
+                What would you like do?
+                Choose one of the following by writing its corresponding number:
+                1. Show all teachers
+                2. Show info about a specific teacher
+                0. Exit
+                """);
+    }
 
 
 }
