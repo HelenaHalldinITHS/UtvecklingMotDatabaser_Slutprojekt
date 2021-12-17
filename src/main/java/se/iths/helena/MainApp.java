@@ -6,11 +6,11 @@ import se.iths.helena.impl.*;
 
 import java.util.Scanner;
 
-public class Application {
+public class MainApp {
     private final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Application application = new Application();
+        MainApp application = new MainApp();
         application.start();
     }
 
@@ -28,8 +28,8 @@ public class Application {
 
     private void runChoice(int choice) {
         switch (choice) {
-            case 1 -> AppGet.run();
-            case 2 -> AppEdit.run();
+            case 1 -> RetrieveInfoApp.run();
+            case 2 -> EditApp.run();
         }
     }
 
