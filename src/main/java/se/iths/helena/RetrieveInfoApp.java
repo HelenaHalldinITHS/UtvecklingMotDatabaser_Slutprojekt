@@ -2,13 +2,16 @@ package se.iths.helena;
 
 import se.iths.helena.dao.CourseDao;
 import se.iths.helena.dao.EducationDao;
+import se.iths.helena.dao.StudentDao;
 import se.iths.helena.entities.Education;
 import se.iths.helena.impl.CourseDaoImpl;
 import se.iths.helena.impl.EducationDaoImpl;
+import se.iths.helena.impl.StudentDaoImpl;
 
 public class RetrieveInfoApp {
     EducationDao educationDao = new EducationDaoImpl();
     CourseDao courseDao = new CourseDaoImpl();
+    StudentDao studentDao = new StudentDaoImpl();
 
     public static void run() {
         RetrieveInfoApp retrieveInfoApp = new RetrieveInfoApp();
@@ -127,6 +130,43 @@ public class RetrieveInfoApp {
 
     // --- Student ---
     private void getStudentInfo() {
+        printStudentInfoMenu();
+        int choice = InputHandler.getIntegerInput(0,3);
+        runStudentInfoChoice(choice);
+    }
+
+    private void runStudentInfoChoice(int choice) {
+        switch (choice){
+            case 1 -> studentDao.showAll();
+            case 2 -> showStudentById();
+            case 3 -> showStudentByEducation();
+        }
+        System.out.println();
+    }
+
+    private void showStudentByEducation() {
+        System.out.println("What is the id of the education?");
+        System.out.println();
+        int id = InputHandler.getIntegerInput();
+        studentDao.showByEducation(educationDao.getById(id));
+    }
+
+    private void showStudentById() {
+        System.out.println("What is the id of the student?");
+        System.out.println();
+        int id = InputHandler.getIntegerInput();
+        studentDao.showInfo(studentDao.getById(id));
+    }
+
+    private void printStudentInfoMenu() {
+        System.out.println("""
+                What would you like do?
+                Choose one of the following by writing its corresponding number:
+                1. Show all student
+                2. Show info about a specific student
+                3. Show students in a specific education
+                0. Exit
+                """);
     }
 
     // --- Teacher ---

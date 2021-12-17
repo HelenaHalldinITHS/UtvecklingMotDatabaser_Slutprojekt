@@ -60,6 +60,11 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao {
     }
 
     @Override
+    public void showByEducation(Education education) {
+        getByEducation(education).forEach(this::print);
+    }
+
+    @Override
     public void registerToEducation(Student student, Education education) {
         if (student.getEducation() != null)
             System.out.println("The student with id " + student.getId() + " is already registered to an education (" + student.getEducation().getName() + ")");
