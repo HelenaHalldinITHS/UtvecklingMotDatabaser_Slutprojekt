@@ -16,13 +16,21 @@ public class Application {
 
     private void start() {
         // loadInitialData(); //If it's the first time you run the program. Uncomment this line
-
         do {
             printMainMenu();
             int choice = getChoice();
             if (choice == 0)
                 break;
+            else
+                runChoice(choice);
         } while (true);
+    }
+
+    private void runChoice(int choice) {
+        switch (choice) {
+            case 1 -> AppGet.run();
+            case 2 -> AppEdit.run();
+        }
     }
 
     private int getChoice() {
