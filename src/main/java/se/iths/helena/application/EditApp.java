@@ -73,8 +73,16 @@ public class EditApp {
     private void runEducationChoice(int choice) {
         switch (choice){
             case 1 -> addEducation();
+            case 2 -> deleteEducation();
         }
         System.out.println();
+    }
+
+    private void deleteEducation() {
+        System.out.println("What is the id of the education you want to delete? ");
+        System.out.println();
+        int id = InputHandler.getIntegerInput();
+        educationDao.delete(educationDao.getById(id));
     }
 
     private void addEducation() {
