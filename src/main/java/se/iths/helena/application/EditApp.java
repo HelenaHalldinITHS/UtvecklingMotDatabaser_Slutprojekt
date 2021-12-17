@@ -1,17 +1,8 @@
 package se.iths.helena.application;
 
-import se.iths.helena.dao.CourseDao;
-import se.iths.helena.dao.EducationDao;
-import se.iths.helena.dao.StudentDao;
-import se.iths.helena.dao.TeacherDao;
-import se.iths.helena.entities.Course;
-import se.iths.helena.entities.Education;
-import se.iths.helena.entities.Student;
-import se.iths.helena.entities.Teacher;
-import se.iths.helena.impl.CourseDaoImpl;
-import se.iths.helena.impl.EducationDaoImpl;
-import se.iths.helena.impl.StudentDaoImpl;
-import se.iths.helena.impl.TeacherDaoImpl;
+import se.iths.helena.dao.*;
+import se.iths.helena.entities.*;
+import se.iths.helena.impl.*;
 
 
 public class EditApp {
@@ -19,12 +10,14 @@ public class EditApp {
     CourseDao courseDao;
     StudentDao studentDao;
     TeacherDao teacherDao;
+    TeacherCourseRelationDao teacherCourseRelationDao;
 
     public EditApp() {
         educationDao = new EducationDaoImpl();
         courseDao = new CourseDaoImpl();
         studentDao = new StudentDaoImpl();
         teacherDao = new TeacherDaoImpl();
+        teacherCourseRelationDao = new TeacherCourseRelationDaoImpl();
     }
 
     public void run() {
@@ -273,7 +266,7 @@ public class EditApp {
     // --- Teacher ---
     private void editTeachers() {
         printEditTeacherMenu();
-        int choice = InputHandler.getIntegerInput(0, 3);
+        int choice = InputHandler.getIntegerInput(0, 5);
         runTeacherChoice(choice);
     }
 
@@ -282,8 +275,34 @@ public class EditApp {
             case 1 -> addTeacher();
             case 2 -> deleteTeacher();
             case 3 -> updateTeacher();
+            case 4 -> addTeacherToEducation();
+            case 5 -> removeTeacherFromEducation();
         }
         System.out.println();
+    }
+
+    private void removeTeacherFromEducation() {
+        System.out.println("What is the id of the course you want to remove a teacher from? \n");
+        int courseId = InputHandler.getIntegerInput();
+        Course course = courseDao.getById(courseId);
+
+        System.out.println("What is the id of the teacher you want to remove? \n");
+        int teacherId = InputHandler.getIntegerInput();
+        Teacher teacher = teacherDao.getById(teacherId);
+
+        teacherCourseRelationDao.remove(teacherCourseRelationDao.get(teacher, course));
+    }
+
+    private void addTeacherToEducation() {
+        System.out.println("What is the id of the course you want to add a teacher to? \n");
+        int courseId = InputHandler.getIntegerInput();
+        Course course = courseDao.getById(courseId);
+
+        System.out.println("What is the id of the teacher you want to add? \n");
+        int teacherId = InputHandler.getIntegerInput();
+        Teacher teacher = teacherDao.getById(teacherId);
+
+        teacherCourseRelationDao.add(new TeacherCourseRelation(teacher, course));
     }
 
     private void updateTeacher() {
@@ -323,6 +342,8 @@ public class EditApp {
                 1. Add teacher
                 2. Delete teacher
                 3. Edit teacher
+                4. Add teacher to course
+                5. Remove teacher from course
                 0. Exit
                 """);
     }

@@ -12,5 +12,7 @@ public interface TeacherCourseRelationDao {
 
     void remove(TeacherCourseRelation relation);
 
+    TeacherCourseRelation get(Teacher teacher, Course course);
+
     void showAll();
 }
