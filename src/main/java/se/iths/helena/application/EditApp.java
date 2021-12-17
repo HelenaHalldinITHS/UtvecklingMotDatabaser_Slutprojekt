@@ -74,8 +74,21 @@ public class EditApp {
         switch (choice){
             case 1 -> addEducation();
             case 2 -> deleteEducation();
+            case 3 -> editEducation();
         }
         System.out.println();
+    }
+
+    private void editEducation() {
+        System.out.println("What is the id of the education you want to edit? ");
+        System.out.println();
+        int id = InputHandler.getIntegerInput();
+        Education education = educationDao.getById(id);
+        System.out.println("What is the new name of the of the education?");
+        System.out.println();
+        String name = InputHandler.getStringInput();
+        education.setName(name);
+        educationDao.update(education);
     }
 
     private void deleteEducation() {
