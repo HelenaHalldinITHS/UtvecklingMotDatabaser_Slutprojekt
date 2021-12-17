@@ -58,6 +58,11 @@ public class CourseDaoImpl extends DaoImpl implements CourseDao {
         return query.getResultList();
     }
 
+    @Override
+    public void showByEducation(Education education) {
+        getByEducation(education).forEach(this::print);
+    }
+
     public void addCourseToEducation(Course course, Education education) {
         if (course.getEducation() != null)
             System.out.println("The course " + course.getName() + " is already connected to an other education (" + education.getName() + ")");
