@@ -75,12 +75,12 @@ public class EditApp {
         switch (choice){
             case 1 -> addEducation();
             case 2 -> deleteEducation();
-            case 3 -> editEducation();
+            case 3 -> updateEducation();
         }
         System.out.println();
     }
 
-    private void editEducation() {
+    private void updateEducation() {
         System.out.println("What is the id of the education you want to edit? ");
         System.out.println();
         int id = InputHandler.getIntegerInput();
@@ -127,8 +127,36 @@ public class EditApp {
     private void runCourseChoice(int choice) {
         switch (choice){
             case 1 -> addCourse();
+            case 2 -> deleteCourse();
+            case 3 -> updateCourse();
         }
         System.out.println();
+    }
+
+    private void updateCourse() {
+        System.out.println("What is the id of the course you want to edit? ");
+        System.out.println();
+        int id = InputHandler.getIntegerInput();
+        Course course = courseDao.getById(id);
+
+        System.out.println("Enter new name: ");
+        System.out.println();
+        String name = InputHandler.getStringInput();
+        course.setName(name);
+
+        System.out.println("Enter new amount of points: ");
+        System.out.println();
+        int points = InputHandler.getIntegerInput();
+        course.setPoints(points);
+
+        courseDao.update(course);
+    }
+
+    private void deleteCourse() {
+        System.out.println("What is the id of the course you want to delete? ");
+        System.out.println();
+        int id = InputHandler.getIntegerInput();
+        courseDao.delete(courseDao.getById(id));
     }
 
     private void addCourse() {
