@@ -7,7 +7,6 @@ import se.iths.helena.impl.*;
 import java.util.Scanner;
 
 public class MainApp {
-    private final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         MainApp application = new MainApp();

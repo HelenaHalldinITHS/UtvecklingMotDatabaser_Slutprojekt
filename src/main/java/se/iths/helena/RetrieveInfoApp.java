@@ -1,6 +1,14 @@
 package se.iths.helena;
 
+import se.iths.helena.dao.CourseDao;
+import se.iths.helena.dao.EducationDao;
+import se.iths.helena.entities.Education;
+import se.iths.helena.impl.CourseDaoImpl;
+import se.iths.helena.impl.EducationDaoImpl;
+
 public class RetrieveInfoApp {
+    EducationDao educationDao = new EducationDaoImpl();
+    CourseDao courseDao = new CourseDaoImpl();
 
     public static void run() {
         RetrieveInfoApp retrieveInfoApp = new RetrieveInfoApp();
@@ -43,6 +51,36 @@ public class RetrieveInfoApp {
         }
     }
 
+    private void getEducationInfo() {
+        printEducationInfoMenu();
+        int choice = InputHandler.getIntegerInput(0,2);
+        runEducationInfoChoice(choice);
+    }
+
+    private void runEducationInfoChoice(int choice) {
+        switch (choice){
+            case 1 -> educationDao.showAll();
+            case 2 -> showEducationById();
+        }
+        System.out.println();
+    }
+
+    private void showEducationById() {
+        System.out.println("What is the id of the education?");
+        System.out.println();
+        int id = InputHandler.getIntegerInput();
+        educationDao.showInfo(educationDao.getById(id));
+    }
+
+    private void printEducationInfoMenu() {
+        System.out.println("""
+                What would you like do?
+                Choose one of the following by writing its corresponding number:
+                1. Show all educations
+                2. Show info about a specific education
+                0. Exit
+                """);
+    }
 
     private void getTeacherInfo() {
     }
@@ -53,6 +91,5 @@ public class RetrieveInfoApp {
     private void getCourseInfo() {
     }
 
-    private void getEducationInfo() {
-    }
+
 }
