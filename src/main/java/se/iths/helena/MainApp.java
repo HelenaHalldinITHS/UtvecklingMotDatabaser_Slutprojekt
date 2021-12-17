@@ -4,9 +4,14 @@ import se.iths.helena.dao.*;
 import se.iths.helena.entities.*;
 import se.iths.helena.impl.*;
 
-import java.util.Scanner;
-
 public class MainApp {
+    RetrieveInfoApp retrieveInfo;
+    EditApp edit;
+
+    private MainApp(){
+        retrieveInfo = new RetrieveInfoApp();
+        edit = new EditApp();
+    }
 
     public static void main(String[] args) {
         MainApp application = new MainApp();
@@ -27,8 +32,8 @@ public class MainApp {
 
     private void runChoice(int choice) {
         switch (choice) {
-            case 1 -> RetrieveInfoApp.run();
-            case 2 -> EditApp.run();
+            case 1 -> retrieveInfo.run();
+            case 2 -> edit.run();
         }
     }
 

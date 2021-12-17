@@ -4,25 +4,26 @@ import se.iths.helena.dao.CourseDao;
 import se.iths.helena.dao.EducationDao;
 import se.iths.helena.dao.StudentDao;
 import se.iths.helena.dao.TeacherDao;
-import se.iths.helena.entities.Education;
-import se.iths.helena.entities.Teacher;
+
 import se.iths.helena.impl.CourseDaoImpl;
 import se.iths.helena.impl.EducationDaoImpl;
 import se.iths.helena.impl.StudentDaoImpl;
 import se.iths.helena.impl.TeacherDaoImpl;
 
 public class RetrieveInfoApp {
-    EducationDao educationDao = new EducationDaoImpl();
-    CourseDao courseDao = new CourseDaoImpl();
-    StudentDao studentDao = new StudentDaoImpl();
-    TeacherDao teacherDao = new TeacherDaoImpl();
+    EducationDao educationDao;
+    CourseDao courseDao;
+    StudentDao studentDao;
+    TeacherDao teacherDao;
 
-    public static void run() {
-        RetrieveInfoApp retrieveInfoApp = new RetrieveInfoApp();
-        retrieveInfoApp.start();
+    public RetrieveInfoApp() {
+        educationDao = new EducationDaoImpl();
+        courseDao = new CourseDaoImpl();
+        studentDao = new StudentDaoImpl();
+        teacherDao = new TeacherDaoImpl();
     }
 
-    private void start() {
+    public void run() {
         do {
             printMenu();
             int choice = getChoice();
@@ -61,12 +62,12 @@ public class RetrieveInfoApp {
     // --- Education ---
     private void getEducationInfo() {
         printEducationInfoMenu();
-        int choice = InputHandler.getIntegerInput(0,2);
+        int choice = InputHandler.getIntegerInput(0, 2);
         runEducationInfoChoice(choice);
     }
 
     private void runEducationInfoChoice(int choice) {
-        switch (choice){
+        switch (choice) {
             case 1 -> educationDao.showAll();
             case 2 -> showEducationById();
         }
@@ -94,12 +95,12 @@ public class RetrieveInfoApp {
 
     private void getCourseInfo() {
         printCourseInfoMenu();
-        int choice = InputHandler.getIntegerInput(0,3);
+        int choice = InputHandler.getIntegerInput(0, 3);
         runCourseInfoChoice(choice);
     }
 
     private void runCourseInfoChoice(int choice) {
-        switch (choice){
+        switch (choice) {
             case 1 -> courseDao.showAll();
             case 2 -> showCourseById();
             case 3 -> showCourseByEducation();
@@ -135,12 +136,12 @@ public class RetrieveInfoApp {
     // --- Student ---
     private void getStudentInfo() {
         printStudentInfoMenu();
-        int choice = InputHandler.getIntegerInput(0,3);
+        int choice = InputHandler.getIntegerInput(0, 3);
         runStudentInfoChoice(choice);
     }
 
     private void runStudentInfoChoice(int choice) {
-        switch (choice){
+        switch (choice) {
             case 1 -> studentDao.showAll();
             case 2 -> showStudentById();
             case 3 -> showStudentByEducation();
@@ -176,12 +177,12 @@ public class RetrieveInfoApp {
     // --- Teacher ---
     private void getTeacherInfo() {
         printTeacherInfoMenu();
-        int choice = InputHandler.getIntegerInput(0,2);
+        int choice = InputHandler.getIntegerInput(0, 2);
         runTeacherInfoChoice(choice);
     }
 
     private void runTeacherInfoChoice(int choice) {
-        switch (choice){
+        switch (choice) {
             case 1 -> teacherDao.showAll();
             case 2 -> showTeacherById();
         }
