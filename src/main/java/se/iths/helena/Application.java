@@ -4,7 +4,10 @@ import se.iths.helena.dao.*;
 import se.iths.helena.entities.*;
 import se.iths.helena.impl.*;
 
+import java.util.Scanner;
+
 public class Application {
+    private final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         Application application = new Application();
@@ -12,11 +15,29 @@ public class Application {
     }
 
     private void start() {
-        loadInitialData(); //If it's the first time you run the program. Uncomment this line
+        // loadInitialData(); //If it's the first time you run the program. Uncomment this line
 
         do {
             printMainMenu();
+            int choice = getChoice();
+            if (choice == 0)
+                break;
         } while (true);
+    }
+
+    private int getChoice() {
+        int choice;
+        do {
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+                if (choice < 0 || choice > 2)
+                    throw new IllegalArgumentException();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Please try again: ");
+            }
+        } while (true);
+        return choice;
     }
 
     private void printMainMenu() {
@@ -55,7 +76,7 @@ public class Application {
         teacherDao.add(teacher2);
 
         TeacherCourseRelationDao teacherCourseRelationDao = new TeacherCourseRelationDaoImpl();
-        TeacherCourseRelation relation = new TeacherCourseRelation(teacher2,course1);
+        TeacherCourseRelation relation = new TeacherCourseRelation(teacher2, course1);
         teacherCourseRelationDao.add(relation);
     }
 }
