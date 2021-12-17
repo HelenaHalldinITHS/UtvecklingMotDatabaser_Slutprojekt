@@ -1,72 +1,61 @@
 package se.iths.helena;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import se.iths.helena.dao.CourseDao;
-import se.iths.helena.dao.EducationDao;
+import se.iths.helena.dao.*;
 import se.iths.helena.entities.*;
-import se.iths.helena.impl.CourseDaoImpl;
-import se.iths.helena.impl.EducationDaoImpl;
+import se.iths.helena.impl.*;
 
 public class Application {
 
     public static void main(String[] args) {
+        Application application = new Application();
+        application.start();
+    }
+
+    private void start() {
+        loadInitialData(); //If it's the first time you run the program. Uncomment this line
+
+        do {
+            printMainMenu();
+        } while (true);
+    }
+
+    private void printMainMenu() {
+        System.out.println("""
+                Welcome! Choose one of the following by writing its corresponding number:
+                1. Get data
+                2. Edit data
+                0. End application
+                """);
+    }
+
+    private void loadInitialData() {
         EducationDao educationDao = new EducationDaoImpl();
+        StudentDao studentDao = new StudentDaoImpl();
         CourseDao courseDao = new CourseDaoImpl();
-        Education education1 = new Education("Java");
-        education1.print();
-        educationDao.add(education1);
-        educationDao.showInfo(education1);
-        Course course1 = new Course("Java", 60, education1);
-        courseDao.add(course1);
-        course1.print();
-/*
-        Education education1 = new Education("Java");
-        Education education2 = new Education("UX-designer");
-        educationDao.add(education1);
-        educationDao.add(education2);
-        Education e = educationDao.getById(1);
-        educationDao.showInfo(e);
-        educationDao.showInfo(education1);
-
- */
-        // educationDao.delete(educationDao.getById(1));
-
-
-        /* EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
-        EntityManager em = emf.createEntityManager();
+        TeacherDao teacherDao = new TeacherDaoImpl();
 
         Education education1 = new Education("Javautvecklare");
         Education education2 = new Education("UX-designer");
-        Student student1 = new Student("Helena", "Halldin", education1);
+        educationDao.add(education1);
+        educationDao.add(education2);
+
+        Student student1 = new Student("Helena", "Halldin");
         Student student2 = new Student("Sara", "Olsson", education1);
-        Course course1 = new Course("Java", 60, education1);
+        studentDao.add(student1);
+        studentDao.add(student2);
+
+        Course course1 = new Course("Java", 60);
         Course course2 = new Course("Sql", 35, education1);
+        courseDao.add(course1);
+        courseDao.add(course2);
+
         Teacher teacher1 = new Teacher("Eddie", "Neumann");
         Teacher teacher2 = new Teacher("Martin", "Test");
-        TeacherCourseRelation tcr1 = new TeacherCourseRelation(teacher1, course1);
-        TeacherCourseRelation tcr2 = new TeacherCourseRelation(teacher2, course1);
-        TeacherCourseRelation tcr3 = new TeacherCourseRelation(teacher1, course2);
-        TeacherCourseRelation tcr4 = new TeacherCourseRelation(teacher2, course2);
+        teacherDao.add(teacher1);
+        teacherDao.add(teacher2);
 
-        em.getTransaction().begin();
-        em.persist(education1);
-        em.persist(education2);
-        em.persist(student1);
-        em.persist(student2);
-        em.persist(course1);
-        em.persist(course2);
-        em.persist(teacher1);
-        em.persist(teacher2);
-        em.persist(tcr1);
-        em.persist(tcr2);
-        em.persist(tcr3);
-        em.persist(tcr4);
-        em.getTransaction().commit();
-        em.close();
-
-         */
-
+        TeacherCourseRelationDao teacherCourseRelationDao = new TeacherCourseRelationDaoImpl();
+        TeacherCourseRelation relation = new TeacherCourseRelation(teacher2,course1);
+        teacherCourseRelationDao.add(relation);
     }
 }
