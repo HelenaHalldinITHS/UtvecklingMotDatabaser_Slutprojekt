@@ -34,18 +34,7 @@ public class MainApp {
     }
 
     private int getChoice() {
-        int choice;
-        do {
-            try {
-                choice = Integer.parseInt(scanner.nextLine());
-                if (choice < 0 || choice > 2)
-                    throw new IllegalArgumentException();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("Please try again: ");
-            }
-        } while (true);
-        return choice;
+        return InputHandler.getIntegerInput(0, 2);
     }
 
     private void printMainMenu() {
