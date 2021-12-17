@@ -7,6 +7,7 @@ import se.iths.helena.dao.TeacherDao;
 import se.iths.helena.entities.Course;
 import se.iths.helena.entities.Education;
 import se.iths.helena.entities.Student;
+import se.iths.helena.entities.Teacher;
 import se.iths.helena.impl.CourseDaoImpl;
 import se.iths.helena.impl.EducationDaoImpl;
 import se.iths.helena.impl.StudentDaoImpl;
@@ -271,6 +272,59 @@ public class EditApp {
 
     // --- Teacher ---
     private void editTeachers() {
+        printEditTeacherMenu();
+        int choice = InputHandler.getIntegerInput(0, 3);
+        runTeacherChoice(choice);
+    }
+
+    private void runTeacherChoice(int choice) {
+        switch (choice) {
+            case 1 -> addTeacher();
+            case 2 -> deleteTeacher();
+            case 3 -> updateTeacher();
+        }
+        System.out.println();
+    }
+
+    private void updateTeacher() {
+        System.out.println("What is the id of the teacher you want to edit? \n");
+        int id = InputHandler.getIntegerInput();
+        Teacher teacher = teacherDao.getById(id);
+
+        System.out.println("Enter new first name: \n");
+        String firstName = InputHandler.getStringInput();
+        teacher.setFirstName(firstName);
+
+        System.out.println("Enter new last name: \n");
+        String lastName = InputHandler.getStringInput();
+        teacher.setLastName(lastName);
+
+        teacherDao.update(teacher);
+    }
+
+    private void deleteTeacher() {
+        System.out.println("What is the id of the teacher you want to delete? \n");
+        int id = InputHandler.getIntegerInput();
+        teacherDao.delete(teacherDao.getById(id));
+    }
+
+    private void addTeacher() {
+        System.out.println("What is the first name of the new teacher? \n");
+        String firstName = InputHandler.getStringInput();
+        System.out.println("What is the last name of the new teacher? \n");
+        String lastName = InputHandler.getStringInput();
+        teacherDao.add(new Teacher(firstName, lastName));
+    }
+
+    private void printEditTeacherMenu() {
+        System.out.println("""
+                What would you like to do?
+                Choose one of the following by writing its corresponding number:
+                1. Add teacher
+                2. Delete teacher
+                3. Edit teacher
+                0. Exit
+                """);
     }
 
 
