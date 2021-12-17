@@ -51,6 +51,7 @@ public class RetrieveInfoApp {
         }
     }
 
+    // --- Education ---
     private void getEducationInfo() {
         printEducationInfoMenu();
         int choice = InputHandler.getIntegerInput(0,2);
@@ -82,14 +83,59 @@ public class RetrieveInfoApp {
                 """);
     }
 
-    private void getTeacherInfo() {
+    // --- Course ---
+
+    private void getCourseInfo() {
+        printCourseInfoMenu();
+        int choice = InputHandler.getIntegerInput(0,3);
+        runCourseInfoChoice(choice);
     }
 
+    private void runCourseInfoChoice(int choice) {
+        switch (choice){
+            case 1 -> courseDao.showAll();
+            case 2 -> showCourseById();
+            case 3 -> showCourseByEducation();
+        }
+        System.out.println();
+    }
+
+    private void showCourseByEducation() {
+        System.out.println("What is the id of the education?");
+        System.out.println();
+        int id = InputHandler.getIntegerInput();
+        courseDao.showByEducation(educationDao.getById(id));
+    }
+
+    private void showCourseById() {
+        System.out.println("What is the id of the course?");
+        System.out.println();
+        int id = InputHandler.getIntegerInput();
+        courseDao.showInfo(courseDao.getById(id));
+    }
+
+    private void printCourseInfoMenu() {
+        System.out.println("""
+                What would you like do?
+                Choose one of the following by writing its corresponding number:
+                1. Show all courses
+                2. Show info about a specific course
+                3. Show courses in a specific education
+                0. Exit
+                """);
+    }
+
+    // --- Student ---
     private void getStudentInfo() {
     }
 
-    private void getCourseInfo() {
+    // --- Teacher ---
+    private void getTeacherInfo() {
     }
+
+
+
+
 
 
 }
