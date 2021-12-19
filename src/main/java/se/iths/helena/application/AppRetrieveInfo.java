@@ -229,19 +229,12 @@ public class AppRetrieveInfo {
     }
 
     private void showAverageStudentPerEducation() {
-        /*
         List<Education> educations = educationDao.getAll();
         double students = 0;
-
-        for(int i = 0; i < educations.size(); i++){
-            List<Student> studentsPerEd = studentDao.getByEducation(educations.get(i));
-            students += studentsPerEd.size();
-        }
-
+        for (Education education : educations)
+            students += studentDao.getByEducation(education).size();
         double average = students / educations.size();
-
-         */
-
+        System.out.println("The average number of students per education is: " + average);
     }
 
     private void printStatisticsMenu() {
