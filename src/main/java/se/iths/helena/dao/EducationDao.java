@@ -2,6 +2,8 @@ package se.iths.helena.dao;
 
 import se.iths.helena.entities.Education;
 
+import java.util.List;
+
 public interface EducationDao {
     void add(Education education);
 
@@ -10,6 +12,8 @@ public interface EducationDao {
     void showInfo(Education education);
 
     Education getById(int id);
+
+    List<Education> getAll();
 
     void showAll();
 

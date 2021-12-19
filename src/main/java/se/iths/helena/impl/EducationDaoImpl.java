@@ -3,6 +3,8 @@ package se.iths.helena.impl;
 import se.iths.helena.dao.EducationDao;
 import se.iths.helena.entities.Education;
 
+import java.util.List;
+
 
 public class EducationDaoImpl extends DaoImpl implements EducationDao {
 
@@ -32,6 +34,12 @@ public class EducationDaoImpl extends DaoImpl implements EducationDao {
     @Override
     public Education getById(int id) {
         return getEntityManager().find(Education.class, id);
+    }
+
+    @Override
+    public List<Education> getAll() {
+        return getEntityManager().createQuery("SELECT e FROM Education e", Education.class).getResultList();
+
     }
 
 

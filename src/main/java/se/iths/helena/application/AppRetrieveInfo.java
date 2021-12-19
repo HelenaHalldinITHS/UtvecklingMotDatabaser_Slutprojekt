@@ -5,18 +5,22 @@ import se.iths.helena.dao.EducationDao;
 import se.iths.helena.dao.StudentDao;
 import se.iths.helena.dao.TeacherDao;
 
+import se.iths.helena.entities.Education;
+import se.iths.helena.entities.Student;
 import se.iths.helena.impl.CourseDaoImpl;
 import se.iths.helena.impl.EducationDaoImpl;
 import se.iths.helena.impl.StudentDaoImpl;
 import se.iths.helena.impl.TeacherDaoImpl;
 
-public class RetrieveInfoApp {
+import java.util.List;
+
+public class AppRetrieveInfo {
     EducationDao educationDao;
     CourseDao courseDao;
     StudentDao studentDao;
     TeacherDao teacherDao;
 
-    public RetrieveInfoApp() {
+    public AppRetrieveInfo() {
         educationDao = new EducationDaoImpl();
         courseDao = new CourseDaoImpl();
         studentDao = new StudentDaoImpl();
@@ -42,12 +46,13 @@ public class RetrieveInfoApp {
                 2. Courses
                 3. Students
                 4. Teachers
+                5. Statistics
                 0. Exit
                 """);
     }
 
     private int getChoice() {
-        return InputHandler.getIntegerInput(0, 4);
+        return InputHandler.getIntegerInput(0, 5);
     }
 
     private void runChoice(int choice) {
@@ -56,6 +61,7 @@ public class RetrieveInfoApp {
             case 2 -> getCourseInfo();
             case 3 -> getStudentInfo();
             case 4 -> getTeacherInfo();
+            case 5 -> getStatistics();
         }
     }
 
@@ -207,4 +213,43 @@ public class RetrieveInfoApp {
     }
 
 
+    // --- Statistics ---
+
+    private void getStatistics() {
+        printStatisticsMenu();
+        int choice = InputHandler.getIntegerInput(0, 1);
+        runStatisticsChoice(choice);
+    }
+
+    private void runStatisticsChoice(int choice) {
+        switch (choice) {
+            case 1 -> showAverageStudentPerEducation();
+        }
+        System.out.println();
+    }
+
+    private void showAverageStudentPerEducation() {
+        /*
+        List<Education> educations = educationDao.getAll();
+        double students = 0;
+
+        for(int i = 0; i < educations.size(); i++){
+            List<Student> studentsPerEd = studentDao.getByEducation(educations.get(i));
+            students += studentsPerEd.size();
+        }
+
+        double average = students / educations.size();
+
+         */
+
+    }
+
+    private void printStatisticsMenu() {
+        System.out.println("""
+                What would you like to see?
+                Choose one of the following by writing its corresponding number:
+                1. Average number of students per education
+                0. Exit
+                """);
+    }
 }

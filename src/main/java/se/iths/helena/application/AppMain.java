@@ -4,17 +4,17 @@ import se.iths.helena.dao.*;
 import se.iths.helena.entities.*;
 import se.iths.helena.impl.*;
 
-public class MainApp {
-    private final RetrieveInfoApp retrieveInfo;
-    private final EditApp edit;
+public class AppMain {
+    private final AppRetrieveInfo retrieveInfo;
+    private final AppEditData edit;
 
-    private MainApp(){
-        retrieveInfo = new RetrieveInfoApp();
-        edit = new EditApp();
+    private AppMain(){
+        retrieveInfo = new AppRetrieveInfo();
+        edit = new AppEditData();
     }
 
     public static void main(String[] args) {
-        MainApp application = new MainApp();
+        AppMain application = new AppMain();
         application.start();
     }
 

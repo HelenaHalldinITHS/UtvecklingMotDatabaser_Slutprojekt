@@ -5,14 +5,14 @@ import se.iths.helena.entities.*;
 import se.iths.helena.impl.*;
 
 
-public class EditApp {
+public class AppEditData {
     EducationDao educationDao;
     CourseDao courseDao;
     StudentDao studentDao;
     TeacherDao teacherDao;
     TeacherCourseRelationDao teacherCourseRelationDao;
 
-    public EditApp() {
+    public AppEditData() {
         educationDao = new EducationDaoImpl();
         courseDao = new CourseDaoImpl();
         studentDao = new StudentDaoImpl();
