@@ -55,6 +55,7 @@ public class MainApp {
         StudentDao studentDao = new StudentDaoImpl();
         CourseDao courseDao = new CourseDaoImpl();
         TeacherDao teacherDao = new TeacherDaoImpl();
+        TeacherCourseRelationDao teacherCourseRelationDao = new TeacherCourseRelationDaoImpl();
 
         Education education1 = new Education("Javautvecklare");
         Education education2 = new Education("UX-designer");
@@ -63,21 +64,22 @@ public class MainApp {
 
         Student student1 = new Student("Helena", "Halldin");
         Student student2 = new Student("Sara", "Olsson", education1);
+        Student student3 = new Student("Tobias", "Eklund", education2);
         studentDao.add(student1);
         studentDao.add(student2);
+        studentDao.add(student3)
 
-        Course course1 = new Course("Java", 60);
-        Course course2 = new Course("Sql", 35, education1);
+        Course course1 = new Course("Java", 60, education1);
+        Course course2 = new Course("Databaser", 35);
         courseDao.add(course1);
         courseDao.add(course2);
 
         Teacher teacher1 = new Teacher("Eddie", "Neumann");
-        Teacher teacher2 = new Teacher("Martin", "Test");
+        Teacher teacher2 = new Teacher("Martin", "Blomberg");
         teacherDao.add(teacher1);
         teacherDao.add(teacher2);
 
-        TeacherCourseRelationDao teacherCourseRelationDao = new TeacherCourseRelationDaoImpl();
-        TeacherCourseRelation relation = new TeacherCourseRelation(teacher2, course1);
-        teacherCourseRelationDao.add(relation);
+        teacherCourseRelationDao.add(new TeacherCourseRelation(teacher2, course1));
+        teacherCourseRelationDao.add(new TeacherCourseRelation(teacher1, course2));
     }
 }
