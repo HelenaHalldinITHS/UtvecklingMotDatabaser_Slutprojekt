@@ -83,6 +83,11 @@ public class CourseDaoImpl extends DaoImpl implements CourseDao {
             System.out.println("The course with id " + course.getId() + " where not a part of anny education");
     }
 
+    @Override
+    public List<Course> getAll() {
+        return getEntityManager().createQuery("SELECT c FROM Course c", Course.class).getResultList();
+    }
+
     private void print(Course course) {
         String educationID = getEducationID(course);
 

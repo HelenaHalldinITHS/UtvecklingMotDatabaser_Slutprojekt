@@ -26,4 +26,6 @@ public interface CourseDao {
     void addCourseToEducation(Course course, Education education);
 
     void removeCourseFromEducation(Course course);
+
+    List<Course> getAll();
 }
