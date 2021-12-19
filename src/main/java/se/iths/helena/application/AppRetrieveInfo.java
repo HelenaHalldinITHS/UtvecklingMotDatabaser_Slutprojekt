@@ -1,18 +1,14 @@
 package se.iths.helena.application;
 
-import se.iths.helena.dao.CourseDao;
-import se.iths.helena.dao.EducationDao;
-import se.iths.helena.dao.StudentDao;
-import se.iths.helena.dao.TeacherDao;
+import se.iths.helena.dao.*;
 
+import se.iths.helena.entities.Course;
 import se.iths.helena.entities.Education;
-import se.iths.helena.entities.Student;
-import se.iths.helena.impl.CourseDaoImpl;
-import se.iths.helena.impl.EducationDaoImpl;
-import se.iths.helena.impl.StudentDaoImpl;
-import se.iths.helena.impl.TeacherDaoImpl;
+import se.iths.helena.entities.TeacherCourseRelation;
+import se.iths.helena.impl.*;
 
 import java.util.List;
+import java.util.Optional;
 
 public class AppRetrieveInfo {
     EducationDao educationDao;
@@ -217,15 +213,32 @@ public class AppRetrieveInfo {
 
     private void getStatistics() {
         printStatisticsMenu();
-        int choice = InputHandler.getIntegerInput(0, 1);
+        int choice = InputHandler.getIntegerInput(0, 2);
         runStatisticsChoice(choice);
     }
 
     private void runStatisticsChoice(int choice) {
         switch (choice) {
             case 1 -> showAverageStudentPerEducation();
+            case 2 -> showCourseWithMostPoints();
         }
         System.out.println();
+    }
+
+    private void showCourseWithMostPoints() {
+        List<Course> courses = courseDao.getAll();
+        int max = 0;
+        Optional<Course> mostPointsCourse = Optional.empty();
+
+        for (Course course : courses) {
+            int points = course.getPoints();
+            if (points > max) {
+                mostPointsCourse = Optional.of(course);
+                max = points;
+            }
+        }
+        mostPointsCourse.ifPresentOrElse(course -> System.out.println("The course with most points is: " + course.getId() + "(" + course.getName() + ")"),
+                () -> System.out.println("There are no courses"));
     }
 
     private void showAverageStudentPerEducation() {
@@ -242,6 +255,7 @@ public class AppRetrieveInfo {
                 What would you like to see?
                 Choose one of the following by writing its corresponding number:
                 1. Average number of students per education
+                2. Course with most points
                 0. Exit
                 """);
     }
