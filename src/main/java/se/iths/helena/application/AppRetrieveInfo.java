@@ -4,6 +4,7 @@ import se.iths.helena.dao.*;
 
 import se.iths.helena.entities.Course;
 import se.iths.helena.entities.Education;
+import se.iths.helena.entities.Student;
 import se.iths.helena.entities.TeacherCourseRelation;
 import se.iths.helena.impl.*;
 
@@ -213,7 +214,7 @@ public class AppRetrieveInfo {
 
     private void getStatistics() {
         printStatisticsMenu();
-        int choice = InputHandler.getIntegerInput(0, 2);
+        int choice = InputHandler.getIntegerInput(0, 3);
         runStatisticsChoice(choice);
     }
 
@@ -221,8 +222,21 @@ public class AppRetrieveInfo {
         switch (choice) {
             case 1 -> showAverageStudentPerEducation();
             case 2 -> showCourseWithMostPoints();
+            case 3 -> showAmountOfStudentsNotRegisteredToEducation();
         }
         System.out.println();
+    }
+
+    private void showAmountOfStudentsNotRegisteredToEducation() {
+        List<Student> students = studentDao.getAll();
+        int notRegistered = 0;
+
+        for (Student student : students) {
+            if (student.getEducation() == null)
+                notRegistered++;
+        }
+
+        System.out.println("The current amount of students not currently registered to any education is: " + notRegistered);
     }
 
     private void showCourseWithMostPoints() {
@@ -256,6 +270,7 @@ public class AppRetrieveInfo {
                 Choose one of the following by writing its corresponding number:
                 1. Average number of students per education
                 2. Course with most points
+                3. Amount of students not currently registered to any education
                 0. Exit
                 """);
     }

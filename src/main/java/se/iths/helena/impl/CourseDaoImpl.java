@@ -40,7 +40,7 @@ public class CourseDaoImpl extends DaoImpl implements CourseDao {
 
     @Override
     public void showAll() {
-        getEntityManager().createQuery("SELECT c FROM Course c", Course.class).getResultList().forEach(this::print);
+        getAll().forEach(this::print);
     }
 
     @Override

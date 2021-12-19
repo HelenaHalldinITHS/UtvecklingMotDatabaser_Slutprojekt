@@ -19,7 +19,7 @@ public class AppMain {
     }
 
     private void start() {
-        //loadInitialData(); //If it's the first time you run the program. Uncomment this line
+        loadInitialData(); //If it's the first time you run the program. Uncomment this line
         do {
             printMainMenu();
             int choice = getChoice();
