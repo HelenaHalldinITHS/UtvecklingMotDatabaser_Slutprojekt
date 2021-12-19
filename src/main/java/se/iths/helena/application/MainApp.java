@@ -5,8 +5,8 @@ import se.iths.helena.entities.*;
 import se.iths.helena.impl.*;
 
 public class MainApp {
-    RetrieveInfoApp retrieveInfo;
-    EditApp edit;
+    private final RetrieveInfoApp retrieveInfo;
+    private final EditApp edit;
 
     private MainApp(){
         retrieveInfo = new RetrieveInfoApp();
@@ -19,7 +19,7 @@ public class MainApp {
     }
 
     private void start() {
-        // loadInitialData(); //If it's the first time you run the program. Uncomment this line
+        //loadInitialData(); //If it's the first time you run the program. Uncomment this line
         do {
             printMainMenu();
             int choice = getChoice();
@@ -62,12 +62,9 @@ public class MainApp {
         educationDao.add(education1);
         educationDao.add(education2);
 
-        Student student1 = new Student("Helena", "Halldin");
-        Student student2 = new Student("Sara", "Olsson", education1);
-        Student student3 = new Student("Tobias", "Eklund", education2);
-        studentDao.add(student1);
-        studentDao.add(student2);
-        studentDao.add(student3)
+        studentDao.add(new Student("Helena", "Halldin"));
+        studentDao.add(new Student("Sara", "Olsson", education1));
+        studentDao.add(new Student("Tobias", "Eklund", education2));
 
         Course course1 = new Course("Java", 60, education1);
         Course course2 = new Course("Databaser", 35);
