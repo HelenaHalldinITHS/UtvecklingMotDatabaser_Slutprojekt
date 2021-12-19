@@ -41,7 +41,7 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao {
 
     @Override
     public void showAll() {
-        getEntityManager().createQuery("SELECT s FROM Student s", Student.class).getResultList().forEach(this::print);
+        getAll().forEach(this::print);
     }
 
     @Override
@@ -83,6 +83,11 @@ public class StudentDaoImpl extends DaoImpl implements StudentDao {
             System.out.println("The student with id " + student.getId() + " is no longer registered to the education " + education);
         } else
             System.out.println("The student with id " + student.getId() + " where not registered to anny education");
+    }
+
+    @Override
+    public List<Student> getAll() {
+       return getEntityManager().createQuery("SELECT s FROM Student s", Student.class).getResultList();
     }
 
     private void print(Student student) {

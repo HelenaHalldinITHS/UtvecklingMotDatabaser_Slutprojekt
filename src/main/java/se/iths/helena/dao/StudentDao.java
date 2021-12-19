@@ -26,4 +26,6 @@ public interface StudentDao {
     void registerToEducation(Student student, Education education);
 
     void unregisterToEducation(Student student);
+
+    List<Student> getAll();
 }
