@@ -77,7 +77,14 @@ public class AppEditData {
     private void updateEducation() {
         System.out.println("What is the id of the education you want to edit? \n");
         int id = InputHandler.getIntegerInput();
-        Education education = educationDao.getById(id);
+        Optional<Education> optionalEducation = educationDao.getById(id);
+
+        if (optionalEducation.isEmpty()){
+            System.out.println("There is no education with id: " + id + "\n");
+            return;
+        }
+
+        Education education = optionalEducation.get();
         System.out.println("What is the new name of the of the education? \n");
         String name = InputHandler.getStringInput();
         education.setName(name);
@@ -87,7 +94,8 @@ public class AppEditData {
     private void deleteEducation() {
         System.out.println("What is the id of the education you want to delete? \n");
         int id = InputHandler.getIntegerInput();
-        educationDao.delete(educationDao.getById(id));
+        Optional<Education> optionalEducation = educationDao.getById(id);
+        optionalEducation.ifPresent(education -> educationDao.delete(education));
     }
 
     private void addEducation() {
@@ -135,12 +143,14 @@ public class AppEditData {
     private void addCourseToEducation() {
         System.out.println("What is the id of the education you want to add a course to? \n");
         int educationId = InputHandler.getIntegerInput();
-        Education education = educationDao.getById(educationId);
+        Optional<Education> optionalEducation = educationDao.getById(educationId);
 
         System.out.println("What is the id of the course you want to add? \n");
         int courseId = InputHandler.getIntegerInput();
-        Optional<Course> course = courseDao.getById(courseId);
-        course.ifPresent(course1 -> courseDao.addCourseToEducation(course1, education));
+        Optional<Course> optionalCourse = courseDao.getById(courseId);
+
+        if (optionalEducation.isPresent() && optionalCourse.isPresent())
+            courseDao.addCourseToEducation(optionalCourse.get(), optionalEducation.get());
     }
 
     private void updateCourse() {
@@ -221,13 +231,13 @@ public class AppEditData {
     private void addStudentToEducation() {
         System.out.println("What is the id of the education you want to add a student to? \n");
         int educationId = InputHandler.getIntegerInput();
-        Education education = educationDao.getById(educationId);
+        Optional<Education> optionalEducation = educationDao.getById(educationId);
 
         System.out.println("What is the id of the student you want to add? \n");
         int studentId = InputHandler.getIntegerInput();
         Student student = studentDao.getById(studentId);
 
-        studentDao.registerToEducation(student, education);
+        optionalEducation.ifPresent(education -> studentDao.registerToEducation(student, education));
     }
 
     private void updateStudent() {

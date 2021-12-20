@@ -80,7 +80,7 @@ public class AppRetrieveInfo {
         System.out.println("What is the id of the education?");
         System.out.println();
         int id = InputHandler.getIntegerInput();
-        educationDao.showInfo(educationDao.getById(id));
+        educationDao.getById(id).ifPresent(education -> educationDao.showInfo(education));
     }
 
     private void printEducationInfoMenu() {
@@ -114,7 +114,7 @@ public class AppRetrieveInfo {
         System.out.println("What is the id of the education?");
         System.out.println();
         int id = InputHandler.getIntegerInput();
-        courseDao.showByEducation(educationDao.getById(id));
+        educationDao.getById(id).ifPresent(education ->courseDao.showByEducation(education));
     }
 
     private void showCourseById() {
@@ -156,7 +156,7 @@ public class AppRetrieveInfo {
         System.out.println("What is the id of the education?");
         System.out.println();
         int id = InputHandler.getIntegerInput();
-        studentDao.showByEducation(educationDao.getById(id));
+        educationDao.getById(id).ifPresent(education -> studentDao.showByEducation(education));
     }
 
     private void showStudentById() {

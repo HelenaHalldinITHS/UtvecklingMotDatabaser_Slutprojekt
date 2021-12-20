@@ -4,6 +4,7 @@ import se.iths.helena.dao.EducationDao;
 import se.iths.helena.entities.Education;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public class EducationDaoImpl extends DaoImpl implements EducationDao {
@@ -32,8 +33,8 @@ public class EducationDaoImpl extends DaoImpl implements EducationDao {
     }
 
     @Override
-    public Education getById(int id) {
-        return getEntityManager().find(Education.class, id);
+    public Optional<Education> getById(int id) {
+        return Optional.ofNullable(getEntityManager().find(Education.class, id));
     }
 
     @Override
