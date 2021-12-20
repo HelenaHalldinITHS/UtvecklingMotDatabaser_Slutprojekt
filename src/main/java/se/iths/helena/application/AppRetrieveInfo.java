@@ -5,7 +5,6 @@ import se.iths.helena.dao.*;
 import se.iths.helena.entities.Course;
 import se.iths.helena.entities.Education;
 import se.iths.helena.entities.Student;
-import se.iths.helena.entities.TeacherCourseRelation;
 import se.iths.helena.impl.*;
 
 import java.util.List;
