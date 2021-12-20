@@ -34,8 +34,8 @@ public class CourseDaoImpl extends DaoImpl implements CourseDao {
     }
 
     @Override
-    public Course getById(int id) {
-        return getEntityManager().find(Course.class, id);
+    public Optional<Course> getById(int id) {
+        return Optional.ofNullable(getEntityManager().find(Course.class, id));
     }
 
     @Override

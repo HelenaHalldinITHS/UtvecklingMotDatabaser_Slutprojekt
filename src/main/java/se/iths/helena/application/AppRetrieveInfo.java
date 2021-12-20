@@ -121,7 +121,8 @@ public class AppRetrieveInfo {
         System.out.println("What is the id of the course?");
         System.out.println();
         int id = InputHandler.getIntegerInput();
-        courseDao.showInfo(courseDao.getById(id));
+        Optional<Course> course = courseDao.getById(id);
+        course.ifPresent(course1 -> courseDao.showInfo(course1));
     }
 
     private void printCourseInfoMenu() {

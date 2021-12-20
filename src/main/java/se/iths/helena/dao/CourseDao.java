@@ -4,6 +4,7 @@ import se.iths.helena.entities.Course;
 import se.iths.helena.entities.Education;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CourseDao {
 
@@ -13,7 +14,7 @@ public interface CourseDao {
 
     void showInfo(Course course);
 
-    Course getById(int id);
+    Optional<Course> getById(int id);
 
     void showAll();
 

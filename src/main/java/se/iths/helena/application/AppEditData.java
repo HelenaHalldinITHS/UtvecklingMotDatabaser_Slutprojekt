@@ -4,6 +4,8 @@ import se.iths.helena.dao.*;
 import se.iths.helena.entities.*;
 import se.iths.helena.impl.*;
 
+import java.util.Optional;
+
 
 public class AppEditData {
     EducationDao educationDao;
@@ -126,7 +128,8 @@ public class AppEditData {
     private void deleteCourseFromEducation() {
         System.out.println("What is the id of the course you want to remove from its education? \n");
         int courseId = InputHandler.getIntegerInput();
-        courseDao.removeCourseFromEducation(courseDao.getById(courseId));
+        Optional<Course> course = courseDao.getById(courseId);
+        course.ifPresent(course1 -> courseDao.removeCourseFromEducation(course1));
     }
 
     private void addCourseToEducation() {
@@ -136,15 +139,21 @@ public class AppEditData {
 
         System.out.println("What is the id of the course you want to add? \n");
         int courseId = InputHandler.getIntegerInput();
-        Course course = courseDao.getById(courseId);
-
-        courseDao.addCourseToEducation(course, education);
+        Optional<Course> course = courseDao.getById(courseId);
+        course.ifPresent(course1 -> courseDao.addCourseToEducation(course1, education));
     }
 
     private void updateCourse() {
         System.out.println("What is the id of the course you want to edit? \n");
         int id = InputHandler.getIntegerInput();
-        Course course = courseDao.getById(id);
+        Optional<Course> optionalCourse = courseDao.getById(id);
+
+        if (optionalCourse.isEmpty()){
+            System.out.println("There is no course with id " + id);
+            return;
+        }
+
+        Course course = optionalCourse.get();
 
         System.out.println("Enter new name: \n");
         String name = InputHandler.getStringInput();
@@ -160,7 +169,8 @@ public class AppEditData {
     private void deleteCourse() {
         System.out.println("What is the id of the course you want to delete? \n");
         int id = InputHandler.getIntegerInput();
-        courseDao.delete(courseDao.getById(id));
+        Optional<Course> optionalCourse = courseDao.getById(id);
+        optionalCourse.ifPresent(course -> courseDao.delete(course));
     }
 
     private void addCourse() {
@@ -284,25 +294,27 @@ public class AppEditData {
     private void removeTeacherFromEducation() {
         System.out.println("What is the id of the course you want to remove a teacher from? \n");
         int courseId = InputHandler.getIntegerInput();
-        Course course = courseDao.getById(courseId);
+        Optional<Course> optionalCourse = courseDao.getById(courseId);
+       // Course course = courseDao.getById(courseId);
 
         System.out.println("What is the id of the teacher you want to remove? \n");
         int teacherId = InputHandler.getIntegerInput();
         Teacher teacher = teacherDao.getById(teacherId);
 
-        teacherCourseRelationDao.remove(teacherCourseRelationDao.get(teacher, course));
+        optionalCourse.ifPresent(course -> teacherCourseRelationDao.remove(teacherCourseRelationDao.get(teacher, course)));
     }
 
     private void addTeacherToEducation() {
         System.out.println("What is the id of the course you want to add a teacher to? \n");
         int courseId = InputHandler.getIntegerInput();
-        Course course = courseDao.getById(courseId);
+
+        Optional<Course> optionalCourse = courseDao.getById(courseId);
 
         System.out.println("What is the id of the teacher you want to add? \n");
         int teacherId = InputHandler.getIntegerInput();
         Teacher teacher = teacherDao.getById(teacherId);
 
-        teacherCourseRelationDao.add(new TeacherCourseRelation(teacher, course));
+        optionalCourse.ifPresent(course -> teacherCourseRelationDao.add(new TeacherCourseRelation(teacher, course)));
     }
 
     private void updateTeacher() {

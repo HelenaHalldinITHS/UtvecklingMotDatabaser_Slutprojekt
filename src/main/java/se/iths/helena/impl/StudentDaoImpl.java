@@ -2,7 +2,6 @@ package se.iths.helena.impl;
 
 import jakarta.persistence.TypedQuery;
 import se.iths.helena.dao.StudentDao;
-import se.iths.helena.entities.Course;
 import se.iths.helena.entities.Education;
 import se.iths.helena.entities.Student;
 
